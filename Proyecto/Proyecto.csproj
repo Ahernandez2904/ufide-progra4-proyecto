@@ -136,10 +136,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\LineIcons.svg" />
     <Content Include="FuncionesJS\UsuarioJS.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\bg.jpg" />
+    <Content Include="images\crazytech\logo-completo.png" />
+    <Content Include="images\crazytech\logo-texto.png" />
+    <Content Include="images\crazytech\logotipo.png" />
+    <Content Include="Scripts\bootstrap.5.0.0.alpha-2-min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -147,7 +152,16 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\LineIcons.eot" />
+    <Content Include="fonts\LineIcons.ttf" />
+    <Content Include="fonts\LineIcons.woff" />
+    <Content Include="fonts\LineIcons.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\contact-form.js" />
+    <Content Include="Scripts\count-up.min.js" />
+    <Content Include="Scripts\glightbox.min.js" />
+    <Content Include="Scripts\imagesloaded.min.js" />
+    <Content Include="Scripts\isotope.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -157,9 +171,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\header.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\tiny-slider.js" />
+    <Content Include="Scripts\wow.min.js" />
+    <Content Include="Styles\animate.css" />
+    <Content Include="Styles\bootstrap-5.0.0-alpha-2.min.css" />
     <Content Include="Styles\font-awesome.css" />
+    <Content Include="Styles\glightbox.min.css" />
+    <Content Include="Styles\lindy-uikit.css" />
+    <Content Include="Styles\LineIcons.2.0.css" />
     <Content Include="Styles\style.css" />
+    <Content Include="Styles\tiny-slider.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -179,6 +203,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Usuario\" />
+    <Folder Include="Views\Productos\" />
+    <Folder Include="Views\Tiquetes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
