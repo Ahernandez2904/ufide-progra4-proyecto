@@ -121,6 +121,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\TiquetesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entidades\UsuarioObj.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,12 +201,16 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuario\IngresoUsuarios.cshtml" />
+    <Content Include="Views\Usuario\RegistroUsuarios.cshtml" />
+    <Content Include="Views\Tiquetes\Solicitudes.cshtml" />
+    <Content Include="Views\Tiquetes\Solicitud.cshtml" />
+    <Content Include="Views\Productos\Mantenimiento.cshtml" />
+    <None Include="Views\Productos\Categorias.cshtml" />
+    <None Include="Views\Usuario\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Usuario\" />
-    <Folder Include="Views\Productos\" />
-    <Folder Include="Views\Tiquetes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

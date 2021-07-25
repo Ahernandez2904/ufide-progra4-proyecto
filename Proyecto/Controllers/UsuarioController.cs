@@ -9,29 +9,20 @@ namespace Proyecto.Controllers
 {
     public class UsuarioController : Controller
     {
-        // GET: Usuario
+        public ActionResult IngresoUsuarios() { return View(); }
+
+        public ActionResult Perfil() { return View(); }
+
+        public ActionResult RegistroUsuarios() { return View(); }
+
+        /*// GET: Usuario
         [HttpGet] // Nos sirve para entrar a las vistas
-        public ActionResult ConsultaUsuarios()
-        {
+        public ActionResult ConsultaUsuarios() { return View(); }*/
 
-            return View();
-        }
-
-        public ActionResult IngresoUsuarios()
-        {
-            return View();
-        }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult RegistrarUsuario(UsuarioObj obj)
-        {
+        { return RedirectToAction("IngresoUsuarios", "Usuario"); }*/
 
-            return RedirectToAction("IngresoUsuarios", "Usuario");
-        }
-
-        public ActionResult RegistrarUsuarioJS()
-        {
-
-            return View();
-        }
+        /*public ActionResult RegistrarUsuarioJS() { return View(); }*/
     }
 }
