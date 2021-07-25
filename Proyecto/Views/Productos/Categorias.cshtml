@@ -1,10 +1,31 @@
 ﻿@model Proyecto.Entidades.UsuarioObj
 @{
-    ViewBag.Title = "Categorias";
+    ViewBag.Title = "Categorías de productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Placeholder</h1>
-<div class="w3ls-login box box--big">
-    <form action="#" method="post">
-    </form>
-</div>
+<h1>Categorías de productos</h1>
+<section class="gallery-section gallery-style-4 mb-80">
+    <div class="container">
+        <div class="row">
+            <!--Inicio de la categoría de producto-->
+            <div class="col-lg-4 col-md-6">
+                <div class="single-gallery">
+                    <div class="image">
+                        <img src="~/images/crazytech/logo-completo.png" />
+                        <div class="overlay">
+                            <div class="action">
+                                <!--<a href="#0"> <i class="lni lni-link"></i> </a> Corregir Ale-->
+                                @Html.ActionLink("Producto", "Productos", "Productos")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h5>Procesadores</h5>
+                        <p>Aquí va una pequeña descripción de los procesadores</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fin de la categoría de producto-->
+        </div>
+    </div>
+</section>

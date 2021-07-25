@@ -15,6 +15,8 @@ namespace Proyecto.Controllers
 
         public ActionResult RegistroUsuarios() { return View(); }
 
+        public ActionResult ActualizarUsuario() { return View(); }
+
         /*// GET: Usuario
         [HttpGet] // Nos sirve para entrar a las vistas
         public ActionResult ConsultaUsuarios() { return View(); }*/

@@ -146,6 +146,9 @@
     <Content Include="images\crazytech\logo-completo.png" />
     <Content Include="images\crazytech\logo-texto.png" />
     <Content Include="images\crazytech\logotipo.png" />
+    <Content Include="images\form\illustation.svg" />
+    <Content Include="images\login\login-bg-original.jpg" />
+    <Content Include="images\login\login-bg.jpg" />
     <Content Include="Scripts\bootstrap.5.0.0.alpha-2-min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -204,13 +207,14 @@
     <Content Include="Views\Usuario\RegistroUsuarios.cshtml" />
     <Content Include="Views\Tiquetes\Solicitudes.cshtml" />
     <Content Include="Views\Tiquetes\Solicitud.cshtml" />
-    <Content Include="Views\Productos\Mantenimiento.cshtml" />
+    <Content Include="Views\Productos\Productos.cshtml" />
     <None Include="Views\Productos\Categorias.cshtml" />
+    <Content Include="Views\Productos\ActualizarProducto.cshtml" />
+    <Content Include="Views\Usuario\ActualizarUsuario.cshtml" />
     <None Include="Views\Usuario\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

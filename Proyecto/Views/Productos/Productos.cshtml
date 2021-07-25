@@ -1,0 +1,41 @@
+﻿@model Proyecto.Entidades.UsuarioObj
+@{
+    ViewBag.Title = "Listado de productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Listado de productos</h1>
+<table class="table table-striped table-bordered" id="tablaUsuarios">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th><!--Ocultar si lo ve un cliente-->
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Cantidad</th><!--Ocultar si lo ve un cliente-->
+            <th>Precio</th>
+            <th>Descuento</th>
+            <th>Activo</th><!--Ocultar si lo ve un cliente-->
+            <th>Actualizar / Eliminar</th><!--Ocultar si lo ve un cliente-->
+        </tr>
+    </thead>
+    <tbody>
+        <!--row starts here-->
+        <tr>
+            <td><input type="radio" name="usuarios" onclick="SeleccionaUsuario()"></td>
+            <td></td><!--Ocultar si lo ve un cliente-->
+            <td></td>
+            <td><a href="">Ver descripción</a></td>
+            <td></td><!--Ocultar si lo ve un cliente-->
+            <td></td>
+            <td></td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
+            <td><input type="checkbox" name="usuarios" onclick="" disabled></td><!--Ocultar si lo ve un cliente-->
+            <td>
+                <!--<a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Actualizar</a>/
+                <a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Eliminar</a>-->
+                @Html.ActionLink("Actualizar", "ActualizarProducto", "Productos", new { }, new Dictionary<string, object> { { "data-toggle", "" }, { "data-target", "" }, { "data-id", "" } }) /
+                <a href="">Eliminar</a> <!--Quizá un alert-->
+            </td>
+        </tr>
+        <!--Row ends here-->
+    </tbody>
+</table>

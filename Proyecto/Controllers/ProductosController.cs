@@ -11,6 +11,8 @@ namespace Proyecto.Controllers
     {
         public ActionResult Categorias() { return View(); }
 
-        public ActionResult Mantenimiento() { return View(); }
+        public ActionResult Productos() { return View(); }
+
+        public ActionResult ActualizarProducto() { return View(); }
     }
 }

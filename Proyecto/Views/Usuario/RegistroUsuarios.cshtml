@@ -1,6 +1,6 @@
 ﻿@model Proyecto.Entidades.UsuarioObj
 @{
-    ViewBag.Title = "IngresoUsuarios";
+    ViewBag.Title = "Registrarse";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="login-section login-style-2 mb-80">
@@ -9,21 +9,21 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-xl-5 offset-xl-1">
                     <div class="login-content-wrapper">
-                        <div class="section-title mb-40"><h3 class="mb-20">Iniciar sesión</h3></div>
+                        <div class="section-title mb-40"><h3 class="mb-20">Registrarse</h3></div>
                         <form action="#" class="login-form">
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                <input type="password" id="signin-name" name="login-password" placeholder="Contraseña">
+                                <input type="text" id="signin-name" name="signin-name" placeholder="Nombre">
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                <input type="password" id="signin-lastname1" name="login-password" placeholder="Contraseña">
+                                <input type="text" id="signin-lastname1" name="signin-lastname1" placeholder="Primer apellido">
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                <input type="password" id="signin-lastname2" name="login-password" placeholder="Contraseña">
+                                <input type="text" id="signin-lastname2" name="signin-lastname2" placeholder="Segundo apellido">
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
@@ -37,16 +37,16 @@
                                 <i class="lni lni-lock"></i>
                             </div>
                             <!--<div class="form-footer">
-        <div class="form-check mb-25">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">Recordar contraseña</label>
-        </div>
-        <p class="mb-25"><a href="#0">Forgot Password?</a></p>
-    </div>-->
+                                <div class="form-check mb-25">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">Recordar contraseña</label>
+                                </div>
+                                <p class="mb-25"><a href="#0">Forgot Password?</a></p>
+                            </div>-->
                             <div class="signup-button mb-25">
-                                <button class="button button-lg radius-10 btn-block">Iniciar sesión</button>
+                                <button class="button button-lg radius-10 btn-block">Registrarse</button>
                             </div>
-                            <p class="mb-25">¿No tienes una cuenta? @Html.ActionLink("Registrate aquí", "RegistroUsuarios", "Usuario")</p>
+                            <p class="mb-25">¿Ya tienes una cuenta? @Html.ActionLink("Inicia sesión", "IngresoUsuario", "Usuario")</p>
                         </form>
                     </div>
                 </div>

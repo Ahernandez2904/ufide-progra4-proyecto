@@ -1,10 +1,12 @@
 ﻿@model Proyecto.Entidades.UsuarioObj
 @{
-    ViewBag.Title = "IngresoUsuarios";
+    ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Placeholder</h1>
-<div class="w3ls-login box box--big">
-    <form action="#" method="post">
-    </form>
-</div>
+<h1>Perfil</h1>
+Información del perfil
+<br />
+Nombre completo*<br />
+Correo*<br />
+@Html.ActionLink("Actualizar usuario", "ActualizarUsuario", "Usuario")
+

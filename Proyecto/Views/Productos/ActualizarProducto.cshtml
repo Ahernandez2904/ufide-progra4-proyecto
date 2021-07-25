@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Actualizar producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Actualizar producto</h1>
+<section id="contact" class="contact-section contact-style-1 mb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-form-wrapper">
+                    <!--<i class="lni lni-text-format"></i> <i class="lni lni-user"></i> <i class="lni lni-envelope"></i> <i class="lni lni-phone"></i> <i class="lni lni-comments-alt"></i>-->
+                    <form action="" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="nombre">Nombre del producto</label>
+                                    <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Name">
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="text" id="cantidad" name="cantidad" class="form-input" placeholder="0">
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="precio">Precio</label>
+                                    <input type="text" id="precio" name="precio" class="form-input" placeholder="0">
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="descuento">Porcentaje de descuento</label>
+                                    <input type="text" id="descuento" name="descuento" class="form-input" placeholder="0">
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="single-input">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea name="descripcion" id="descripcion" class="form-input" placeholder="Descripción del productos" rows="3"></textarea>
+                                    <i class="lni lni-comments-alt"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="checkbox" name="activo" onclick=""> Habilitar producto
+                            </div>
+                            <br /><br />
+                            <div class="col-md-12">
+                                <div class="form-button">
+                                    <button type="submit" class="button radius-10">Actualizar<i class="lni lni-telegram-original"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-image">
+        <img src="~/images/form/illustation.svg" alt="">
+    </div>
+</section>

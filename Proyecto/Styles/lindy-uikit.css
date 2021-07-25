@@ -378,7 +378,7 @@ p {
 }
 
 .button.border-button {
-  background: transparent;
+  background: #ffffff;
   color: #FD5C63;
   border-color: #FD5C63;
 }
@@ -415,7 +415,7 @@ p {
 /* ============================= 
     HEADER-1 CSS
 ================================ */
-.header {
+/*.header {
   background: #ffffff;
 }
 
@@ -652,7 +652,7 @@ p {
   transform: rotate(-45deg);
   position: relative;
   top: -5px;
-}
+}*/
 
 /* ============================= 
     HEADER-2 CSS
@@ -938,7 +938,7 @@ p {
 /* ============================= 
     HEADER-4 CSS
 ================================ */
-.header {
+/*.header {
   background: #ffffff;
 }
 
@@ -1268,7 +1268,7 @@ p {
   transform: rotate(-45deg);
   position: relative;
   top: -5px;
-}
+}*/
 
 /* ============================= 
     HERO-1 CSS
@@ -2410,7 +2410,7 @@ p {
 /* ============================= 
     GALLERY-1 CSS
 ================================ */
-.gallery-style-1 {
+/*.gallery-style-1 {
   padding: 100px 0 70px;
   background: #f3f3f3;
 }
@@ -2494,7 +2494,7 @@ p {
 
 .gallery-style-1 .single-gallery .overlay .overlay-content .info p {
   color: #ffffff;
-}
+}*/
 
 /* ============================= 
     GALLERY-2 CSS
@@ -3187,7 +3187,7 @@ p {
   border-radius: 30px;
   overflow: hidden;
   background-color: #f3f3f3;
-  background-image: url("../img/signup/login-2/login-bg.jpg");
+  background-image: url("../images/login/login-bg.jpg");
 }
 
 @media (max-width: 767px) {
@@ -4380,4 +4380,89 @@ input:focus, textarea:focus, button:focus {
 
 .pr-100 {
   padding-right: 100px;
+}
+/*copiado*/
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: 1.5rem;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+.gallery-style-4 .single-gallery {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-bottom: 30px;
+}
+.gallery-style-4 .single-gallery .image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.gallery-style-4 .single-gallery .image img {
+    width: 100%;
+}
+.gallery-style-4 .single-gallery .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-out 0s;
+    background: rgba(47,128,237,.3);
+}
+.gallery-style-4 .single-gallery .overlay .action {
+    transform: translateY(20px);
+    transition: all .3s ease-out 0s;
+}
+.gallery-style-4 .single-gallery .info {
+    transition: all .3s ease-out 0s;
+    background: #fff;
+    margin-left: 30px;
+    margin-bottom: 15px;
+    padding: 30px 20px;
+    border-radius: 5px 0 5px 5px;
+    margin-top: -70px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 15px rgb(0 0 0 / 10%);
+}
+.gallery-style-4 .single-gallery:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-style-4 .single-gallery .overlay .action a {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #323450;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lni {
+    display: inline-block;
+    font: normal normal normal 1em/1 'LineIcons';
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
