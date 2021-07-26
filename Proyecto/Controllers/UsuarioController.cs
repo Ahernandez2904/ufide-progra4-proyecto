@@ -62,9 +62,8 @@ namespace Proyecto.Controllers
 
                 if (resultado != null)
                 {
-                    
-                    return RedirectToAction ("RegistroUsuarios");
-
+                    return Json(JsonRequestBehavior.AllowGet);
+             
                 }
                 else
                 {

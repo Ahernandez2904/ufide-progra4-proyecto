@@ -42,7 +42,13 @@ function IngresarUsuario() {
 
 
         },
-    
+        dataType: 'json',
+        success: function (data) {
+            alert('Usuario Encontrado');
+        },
+        error: function (data) {
+            alert('mal');
+        }
     });
 
 }
