@@ -1,16 +1,48 @@
-﻿window.onload = Inicio();
+﻿function RegistrarUsuario() {
 
-function Inicio() {
-    document.getElementById("userID").placeholder = "User ID";
-    document.getElementById("Correo").placeholder = "Correo";
-    document.getElementById("Contrasena").placeholder = "Contraseña";
+    var nombre = document.getElementById("nombre").value
+    var apellido1 = document.getElementById("apellido1").value
+    var apellido2 = $("#apellido2").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+
+
+    $.ajax({
+        type: 'POST',
+        url: '/Usuario/RegistroUsuarioJS',
+        data: {
+            nombre: nombre,
+            apellido1: apellido1,
+            apellido2: apellido2,
+            email: email,
+            password: password
+
+
+        },
+        dataType: 'json',
+        success: function (data) {
+            alert("Usuario Registrado");
+        },
+        error: function (data) {
+            alert('mal');
+        }
+    });
+
 }
+function IngresarUsuario() {
+    var email = $("#email").val();
+    var password = $("#password").val();
 
-function RegistrarUsuario() {
+    $.ajax({
+        type: 'POST',
+        url: '/Usuario/IngresoUsuarioJS',
+        data: {
+            email: email,
+            password: password
 
-    var id = document.getElementbyId("userID").value;
-    var email = document.getElementbyId("Correo").value;
-    var paasword = $("Contrasena").val();
+
+        },
+    
+    });
 
 }
-
