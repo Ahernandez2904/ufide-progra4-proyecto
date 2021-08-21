@@ -10,6 +10,7 @@ namespace Proyecto.Controllers
 {
     public class UsuarioController : Controller
     {
+        Errores model = new Errores(); // instancia errores
 
         UsuarioModel modelillo = new UsuarioModel();
 
@@ -30,6 +31,19 @@ namespace Proyecto.Controllers
 
             return View();
 
+        }
+        public ActionResult ConsultaErrores()
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+
+            return View();
         }
 
 
