@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Proyecto.Entidades
 {
-    public class Factura
+    public class FacturaObj
     {
         public int Facturas_ID { get; set; }
         public int usuario_cliente_id { get; set; }

@@ -46,7 +46,7 @@
                     <td>@item.Descripcion</td>
 
                     <td>@item.Precio</td>
-                    <td>@item.PorcentajaDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
+                    <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
               
                 
                 </tr>
@@ -56,13 +56,13 @@
                 <tr>
 
                     <td><input type="radio" name="usuarios" 
-                               onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajaDescuento)"></td>
+                               onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
                     <td>@item.ProductoID</td><!--Ocultar si lo ve un cliente-->
                     <td>@item.NombreProducto</td>
                     <td>@item.Descripcion</td>
                     <td>@item.Cantidad</td><!--Ocultar si lo ve un cliente-->
                     <td>@item.Precio</td>
-                    <td>@item.PorcentajaDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
+                    <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
                     <td><input type="checkbox" name="usuarios" onclick="" disabled></td><!--Ocultar si lo ve un cliente-->
                     <td>
                         <!--<a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Actualizar</a>/
