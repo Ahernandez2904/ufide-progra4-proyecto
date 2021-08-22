@@ -20,11 +20,17 @@ namespace Proyecto
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/datatables.js",
+                      "~/Scripts/jquery.dataTables.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                       "~/Content/datatables.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/custom-validator").Include(
+                "~/Scripts/script-custom-validator.js"));
         }
     }
 }

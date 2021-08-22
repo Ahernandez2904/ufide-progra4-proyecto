@@ -1,12 +1,61 @@
-﻿@model Proyecto.Entidades.UsuarioObj
+﻿@model Usuario
 @{
     ViewBag.Title = "Perfil";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Perfil</h1>
-Información del perfil
-<br />
-Nombre completo*<br />
-Correo*<br />
-@Html.ActionLink("Actualizar usuario", "ActualizarUsuario", "Usuario")
+
+
+<section class="login-section login-style-2 mb-80">
+    <div class="container">
+        <div class="login-wrapper img-bg">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-xl-5 offset-xl-1">
+                    <div class="login-content-wrapper">
+                        <div class="section-title mb-40"><h3 class="mb-20">Perfil</h3></div>
+                        @using (Html.BeginForm("ObtenerUsuario", "Usuario", FormMethod.Post, new { @class = "login-form" }))
+                        {
+                            <div class="single-input">
+                                <!--<label for="login-password">Password</label>-->
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "login-form", placeholder = "Nombre" })
+                                <i class="lni lni-user"></i>
+                            </div>
+                            <div class="single-input">
+                                <!--<label for="login-password">Password</label>-->
+                                @Html.TextBoxFor(Model => Model.Apellido1, new { @class = "login-form", placeholder = "Primer Apellido" })
+                                <i class="lni lni-user"></i>
+                            </div>
+                            <div class="single-input">
+                                <!--<label for="login-password">Password</label>-->
+                                @Html.TextBoxFor(Model => Model.Apellido2, new { @class = "login-form", placeholder = "Segundo Apellido" })
+                                <i class="lni lni-user"></i>
+                            </div>
+                            <div class="single-input">
+                                <!--<label for="login-email">Email</label>-->
+                                @Html.TextBoxFor(Model => Model.Email, new { @class = "login-form", placeholder = "Correo electrónico" })
+                                <i class="lni lni-envelope"></i>
+                            </div>
+  
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") { x.type = "text"; } else { x.type = "password"; }
+    }
+</script>
+
+
+@section Scripts
+{
+    @Scripts.Render("/FuncionesJS/UsuarioJs.js")
+}
+
 

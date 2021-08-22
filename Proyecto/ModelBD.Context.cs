@@ -27,7 +27,73 @@ namespace Proyecto
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<EstadoTicket> EstadoTickets { get; set; }
+        public virtual DbSet<Factura> Facturas { get; set; }
+        public virtual DbSet<Permiso> Permisos { get; set; }
+        public virtual DbSet<Producto> Productoes { get; set; }
+        public virtual DbSet<ProductoTicket> ProductoTickets { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
+    
+        public virtual int ActualizarUsuarios(string nombre, string apellido1, string apellido2, Nullable<int> permisosID, Nullable<int> activos, string password, string email, Nullable<int> usuarioID)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellido1Parameter = apellido1 != null ?
+                new ObjectParameter("Apellido1", apellido1) :
+                new ObjectParameter("Apellido1", typeof(string));
+    
+            var apellido2Parameter = apellido2 != null ?
+                new ObjectParameter("Apellido2", apellido2) :
+                new ObjectParameter("Apellido2", typeof(string));
+    
+            var permisosIDParameter = permisosID.HasValue ?
+                new ObjectParameter("PermisosID", permisosID) :
+                new ObjectParameter("PermisosID", typeof(int));
+    
+            var activosParameter = activos.HasValue ?
+                new ObjectParameter("Activos", activos) :
+                new ObjectParameter("Activos", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var usuarioIDParameter = usuarioID.HasValue ?
+                new ObjectParameter("UsuarioID", usuarioID) :
+                new ObjectParameter("UsuarioID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarUsuarios", nombreParameter, apellido1Parameter, apellido2Parameter, permisosIDParameter, activosParameter, passwordParameter, emailParameter, usuarioIDParameter);
+        }
+    
+        public virtual ObjectResult<Consultar_Factura_Result> Consultar_Factura()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Factura_Result>("Consultar_Factura");
+        }
+    
+        public virtual int Eliminar_Factura(Nullable<long> ticketIDFactura)
+        {
+            var ticketIDFacturaParameter = ticketIDFactura.HasValue ?
+                new ObjectParameter("TicketIDFactura", ticketIDFactura) :
+                new ObjectParameter("TicketIDFactura", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar_Factura", ticketIDFacturaParameter);
+        }
+    
+        public virtual int Eliminar_Usuarios(Nullable<long> usuarioID)
+        {
+            var usuarioIDParameter = usuarioID.HasValue ?
+                new ObjectParameter("UsuarioID", usuarioID) :
+                new ObjectParameter("UsuarioID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar_Usuarios", usuarioIDParameter);
+        }
     
         public virtual ObjectResult<Ingresar_Usuario_Result> Ingresar_Usuario(string email, string password)
         {

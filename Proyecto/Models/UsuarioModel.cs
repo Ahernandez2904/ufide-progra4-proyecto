@@ -25,5 +25,29 @@ namespace Proyecto.Models
                 contextoBD.Ingresar_Usuario(password, email);
             }
         }
+
+        public List<Usuario> ConsultarUsuarios()
+        {
+            List<Usuario> usuarioRespuesta = new List<Usuario>();
+
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = (from x in contexto.Usuarios
+                                 select x).ToList();
+
+                foreach (var item in resultado)
+                {
+                    usuarioRespuesta.Add(new Usuario
+                    {
+                        UsuarioID = item.UsuarioID,
+                        Email = item.Email
+                    });
+                }
+            }
+            return usuarioRespuesta;
+        }
+
+        
+
     }
 }

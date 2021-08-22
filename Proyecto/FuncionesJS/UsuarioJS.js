@@ -21,10 +21,10 @@
         },
         dataType: 'json',
         success: function (data) {
-            alert("Usuario Registrado");
+          
         },
         error: function (data) {
-            alert('mal');
+          
         }
     });
 

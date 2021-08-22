@@ -1,4 +1,4 @@
-﻿@model Proyecto.Entidades.UsuarioObj
+﻿@model Usuario
 @{
     ViewBag.Title = "RegistroUsuarios";
 }
@@ -9,31 +9,32 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-xl-5 offset-xl-1">
                     <div class="login-content-wrapper">
-                        <div class="section-title mb-40"><h3 class="mb-20">Iniciar sesión</h3></div>
-                        <form action="#" class="login-form">
+                        <div class="section-title mb-40"><h3 class="mb-20">Registro de Usuario</h3></div>
+                        @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "login-form" }))
+                        {
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.nombre, new { @class = "login-form", placeholder = "Nombre" })
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "login-form", placeholder = "Nombre" })
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.apellido1, new { @class = "login-form", placeholder = "Primer Apellido" })
+                                @Html.TextBoxFor(Model => Model.Apellido1, new { @class = "login-form", placeholder = "Primer Apellido" })
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.apellido2, new { @class = "login-form", placeholder = "Segundo Apellido" })
+                                @Html.TextBoxFor(Model => Model.Apellido2, new { @class = "login-form", placeholder = "Segundo Apellido" })
                                 <i class="lni lni-user"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-email">Email</label>-->
-                                @Html.TextBoxFor(Model => Model.email, new { @class = "login-form", placeholder = "Correo electrónico" })
+                                @Html.TextBoxFor(Model => Model.Email, new { @class = "login-form", placeholder = "Correo electrónico" })
                                 <i class="lni lni-envelope"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                @Html.PasswordFor(Model => Model.password, new { @class = "login-password", placeholder = "Contraseña", required = "" })
+                                @Html.PasswordFor(Model => Model.Password, new { @class = "login-password", placeholder = "Contraseña", required = "" })
                                 <i class="lni lni-lock"></i>
                             </div>
 
@@ -46,19 +47,17 @@
                             </div>
 
 
-                            <script>
-                                function myFunction() {
-                                    var x = document.getElementById("password");
-                                    if (x.type === "password") { x.type = "text"; } else { x.type = "password"; }
-                                }
-                            </script>
+
 
 
                             <div class="signup-button mb-25">
-                                <input type="button" value="Iniciar sesión" class="button button-lg radius-10 btn-bloc" style="width:100%" onclick="RegistrarUsuario();">
+                                @*<input type="button" value="Iniciar sesión" class="button button-lg radius-10 btn-bloc" style="width:100%" onclick="RegistrarUsuario();">*@
+                                <input type="submit" value="Registrarse" class="button button-lg radius-10 btn-bloc" style="width:100%" onclick="RegistrarUsuario();">
                             </div>
-                            <p class="mb-25">¿No tienes una cuenta? @Html.ActionLink("Registrate aquí", "RegistroUsuarios", "Usuario")</p>
-                        </form>
+                       
+                        }
+
+
                     </div>
                 </div>
             </div>
@@ -66,6 +65,12 @@
     </div>
 </section>
 
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") { x.type = "text"; } else { x.type = "password"; }
+    }
+</script>
 
 
 @section Scripts
