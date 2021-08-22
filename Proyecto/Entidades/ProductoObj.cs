@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Proyecto.Entidades
 {
-    public class Producto
+    public class ProductoObj
     {
         public int ProductoID { get; set; }
         public string NombreProducto { get; set; }
