@@ -7,6 +7,6 @@ function SeleccionaProducto(idProducto, nombreProducto, descripcion, cantidad, p
     $("NombreProducto").val(nombreProducto)
     $("Cantidad").val(cantidad)
     $("Precio").val(precio)
-    $("PorcentajaDescuento").val(descuento)
+    $("PorcentajeDescuento").val(descuento)
     $("Descripcion").val(descripcion)
 } 
