@@ -5,25 +5,38 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CrazyTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="Usuario_Error_ID" />
+          </Key>
+          <Property Name="Usuario_Error_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion_Error" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID_Controller" Type="int" Nullable="false" />
+          <Property Name="Hora" Type="datetime" />
+          <Property Name="ID_Action" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaProducto">
+          <Key>
+            <PropertyRef Name="CategoriaProductoID" />
+          </Key>
+          <Property Name="CategoriaProductoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="EstadoTicket">
           <Key>
             <PropertyRef Name="EstadoTicket_ID" />
           </Key>
           <Property Name="EstadoTicket_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Cantidad" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Factura">
+        <EntityType Name="Facturas">
           <Key>
-            <PropertyRef Name="TicketIDFactura" />
+            <PropertyRef Name="Facturas_ID" />
           </Key>
-          <Property Name="TicketIDFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Usuario_Empleado_Asig" Type="int" Nullable="false" />
-          <Property Name="Usuario_Cliente" Type="int" Nullable="false" />
-          <Property Name="Estado_Ticket" Type="int" Nullable="false" />
-          <Property Name="Fecha" Type="datetime" Nullable="false" />
-          <Property Name="Presupuesto" Type="int" Nullable="false" />
-          <Property Name="Detalles" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="Facturas_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_cliente_id" Type="int" Nullable="false" />
+          <Property Name="ticket_ID" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -40,16 +53,21 @@
           <Property Name="NombreProducto" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
-          <Property Name="Activo" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="Precio" Type="int" Nullable="false" />
-          <Property Name="PorcentajaDescuento" Type="int" Nullable="false" />
+          <Property Name="PorcentajeDescuento" Type="int" Nullable="false" />
+          <Property Name="CategoriaProductoID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ProductoTicket">
           <Key>
-            <PropertyRef Name="Producto_ID" />
+            <PropertyRef Name="ProductoID" />
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="Cantidad" />
           </Key>
-          <Property Name="Producto_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Id_Ticket" Type="int" Nullable="false" />
+          <Property Name="ProductoID" Type="int" Nullable="false" />
+          <Property Name="TicketID" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ticket">
@@ -73,23 +91,41 @@
           <Property Name="Apellido1" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Apellido2" Type="varchar" MaxLength="100" />
           <Property Name="PermisosID" Type="int" Nullable="false" />
-          <Property Name="Activos" Type="int" Nullable="false" />
+          <Property Name="Activos" Type="bit" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Function Name="ActualizarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Actualizar_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario_Empleado_Asig" Type="int" Mode="In" />
+          <Parameter Name="Usuario_Cliente" Type="int" Mode="In" />
+          <Parameter Name="Estado_Ticket" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Presupuesto" Type="int" Mode="In" />
+          <Parameter Name="Detalles" Type="varchar" Mode="In" />
+          <Parameter Name="TicketID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Actualizar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Apellido1" Type="varchar" Mode="In" />
           <Parameter Name="Apellido2" Type="varchar" Mode="In" />
           <Parameter Name="PermisosID" Type="int" Mode="In" />
-          <Parameter Name="Activos" Type="int" Mode="In" />
+          <Parameter Name="Activos" Type="bit" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
           <Parameter Name="Email" Type="varchar" Mode="In" />
           <Parameter Name="UsuarioID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Consultar_Categoria_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Consultar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Consultar_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Consultar_Tiquetes_Activos_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="activo" Type="bit" Mode="In" />
+        </Function>
         <Function Name="Eliminar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TicketIDFactura" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Eliminar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoID" Type="bigint" Mode="In" />
         </Function>
         <Function Name="Eliminar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioID" Type="bigint" Mode="In" />
@@ -98,50 +134,91 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="Registrar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Facturas_ID" Type="int" Mode="In" />
+          <Parameter Name="usuario_cliente_id" Type="int" Mode="In" />
+          <Parameter Name="ticket_ID" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Producto_ID" Type="int" Mode="In" />
+          <Parameter Name="Id_Ticket" Type="int" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TicketID" Type="int" Mode="In" />
+          <Parameter Name="Usuario_Empleado_Asig" Type="int" Mode="In" />
+          <Parameter Name="Usuario_Cliente" Type="int" Mode="In" />
+          <Parameter Name="Estado_Ticket" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Presupuesto" Type="int" Mode="In" />
+          <Parameter Name="Detalles" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Registrar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Apellido1" Type="varchar" Mode="In" />
           <Parameter Name="Apellido2" Type="varchar" Mode="In" />
           <Parameter Name="PermisosID" Type="int" Mode="In" />
-          <Parameter Name="Activos" Type="int" Mode="In" />
+          <Parameter Name="Activos" Type="bit" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
           <Parameter Name="Email" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="CrazyTechModelStoreContainer">
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstadoTicket" EntityType="Self.EstadoTicket" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductoTicket" EntityType="Self.ProductoTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoTicket" EntityType="Self.ProductoTicket" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductoTicket].[ProductoID] AS [ProductoID], 
+    [ProductoTicket].[TicketID] AS [TicketID], 
+    [ProductoTicket].[Cantidad] AS [Cantidad]
+    FROM [dbo].[ProductoTicket] AS [ProductoTicket]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CrazyTechModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="Usuario_Error_ID" />
+          </Key>
+          <Property Name="Usuario_Error_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion_Error" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Controller" Type="Int32" Nullable="false" />
+          <Property Name="Hora" Type="DateTime" Precision="3" />
+          <Property Name="ID_Action" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaProducto">
+          <Key>
+            <PropertyRef Name="CategoriaProductoID" />
+          </Key>
+          <Property Name="CategoriaProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="EstadoTicket">
           <Key>
             <PropertyRef Name="EstadoTicket_ID" />
           </Key>
           <Property Name="EstadoTicket_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Factura">
+        <EntityType Name="Facturas">
           <Key>
-            <PropertyRef Name="TicketIDFactura" />
+            <PropertyRef Name="Facturas_ID" />
           </Key>
-          <Property Name="TicketIDFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario_Empleado_Asig" Type="Int32" Nullable="false" />
-          <Property Name="Usuario_Cliente" Type="Int32" Nullable="false" />
-          <Property Name="Estado_Ticket" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Presupuesto" Type="Int32" Nullable="false" />
-          <Property Name="Detalles" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Facturas_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_cliente_id" Type="Int32" Nullable="false" />
+          <Property Name="ticket_ID" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Permiso">
+        <EntityType Name="Permisos">
           <Key>
             <PropertyRef Name="Permiso_ID" />
           </Key>
@@ -156,17 +233,10 @@
           <Property Name="NombreProducto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="Activo" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="Precio" Type="Int32" Nullable="false" />
-          <Property Name="PorcentajaDescuento" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProductoTicket">
-          <Key>
-            <PropertyRef Name="Producto_ID" />
-          </Key>
-          <Property Name="Producto_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Ticket" Type="Int32" Nullable="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="PorcentajeDescuento" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaProductoID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -180,7 +250,7 @@
           <Property Name="Presupuesto" Type="Int32" Nullable="false" />
           <Property Name="Detalles" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="UsuarioID" />
           </Key>
@@ -189,31 +259,61 @@
           <Property Name="Apellido1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellido2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PermisosID" Type="Int32" Nullable="false" />
-          <Property Name="Activos" Type="Int32" Nullable="false" />
+          <Property Name="Activos" Type="Boolean" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductoTicket">
+          <Key>
+            <PropertyRef Name="ProductoID" />
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="Cantidad" />
+          </Key>
+          <Property Name="ProductoID" Type="Int32" Nullable="false" />
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="CrazyTechEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EstadoTickets" EntityType="Self.EstadoTicket" />
-          <EntitySet Name="Facturas" EntityType="Self.Factura" />
-          <EntitySet Name="Permisos" EntityType="Self.Permiso" />
-          <EntitySet Name="Productoes" EntityType="Self.Producto" />
-          <EntitySet Name="ProductoTickets" EntityType="Self.ProductoTicket" />
-          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <FunctionImport Name="ActualizarUsuarios">
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" />
+          <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" />
+          <EntitySet Name="EstadoTicket" EntityType="Self.EstadoTicket" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="ProductoTicket" EntityType="Self.ProductoTicket" />
+          <FunctionImport Name="Actualizar_Ticket">
+            <Parameter Name="Usuario_Empleado_Asig" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario_Cliente" Mode="In" Type="Int32" />
+            <Parameter Name="Estado_Ticket" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Presupuesto" Mode="In" Type="Int32" />
+            <Parameter Name="Detalles" Mode="In" Type="String" />
+            <Parameter Name="TicketID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Actualizar_Usuarios">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Apellido1" Mode="In" Type="String" />
             <Parameter Name="Apellido2" Mode="In" Type="String" />
             <Parameter Name="PermisosID" Mode="In" Type="Int32" />
-            <Parameter Name="Activos" Mode="In" Type="Int32" />
+            <Parameter Name="Activos" Mode="In" Type="Boolean" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="UsuarioID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Consultar_Categoria_Producto" ReturnType="Collection(CrazyTechModel.Consultar_Categoria_Producto_Result)" />
           <FunctionImport Name="Consultar_Factura" ReturnType="Collection(CrazyTechModel.Consultar_Factura_Result)" />
+          <FunctionImport Name="Consultar_Producto" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Result)" />
+          <FunctionImport Name="Consultar_Tiquetes_Activos_Usuario" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Usuario_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="activo" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="Eliminar_Factura">
             <Parameter Name="TicketIDFactura" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar_Producto_Ticket">
+            <Parameter Name="ProductoID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="Eliminar_Usuarios">
             <Parameter Name="UsuarioID" Mode="In" Type="Int64" />
@@ -222,18 +322,58 @@
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Registrar_Factura">
+            <Parameter Name="Facturas_ID" Mode="In" Type="Int32" />
+            <Parameter Name="usuario_cliente_id" Mode="In" Type="Int32" />
+            <Parameter Name="ticket_ID" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Producto_Ticket">
+            <Parameter Name="Producto_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Ticket" Mode="In" Type="Int32" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Ticket">
+            <Parameter Name="TicketID" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario_Empleado_Asig" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario_Cliente" Mode="In" Type="Int32" />
+            <Parameter Name="Estado_Ticket" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Presupuesto" Mode="In" Type="Int32" />
+            <Parameter Name="Detalles" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="Registrar_Usuarios">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Apellido1" Mode="In" Type="String" />
             <Parameter Name="Apellido2" Mode="In" Type="String" />
             <Parameter Name="PermisosID" Mode="In" Type="Int32" />
-            <Parameter Name="Activos" Mode="In" Type="Int32" />
+            <Parameter Name="Activos" Mode="In" Type="Boolean" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Consultar_Categoria_Producto_Result">
+          <Property Type="Int32" Name="CategoriaProductoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="Consultar_Factura_Result">
-          <Property Type="Int32" Name="TicketIDFactura" Nullable="false" />
+          <Property Type="Int32" Name="Facturas_ID" Nullable="false" />
+          <Property Type="Int32" Name="usuario_cliente_id" Nullable="false" />
+          <Property Type="Int32" Name="ticket_ID" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Consultar_Producto_Result">
+          <Property Type="Int32" Name="ProductoID" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+          <Property Type="Int32" Name="Precio" Nullable="false" />
+          <Property Type="Int32" Name="PorcentajeDescuento" Nullable="false" />
+          <Property Type="Int32" Name="CategoriaProductoID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Consultar_Tiquetes_Activos_Usuario_Result">
+          <Property Type="Int32" Name="TicketID" Nullable="false" />
           <Property Type="Int32" Name="Usuario_Empleado_Asig" Nullable="false" />
           <Property Type="Int32" Name="Usuario_Cliente" Nullable="false" />
           <Property Type="Int32" Name="Estado_Ticket" Nullable="false" />
@@ -247,7 +387,7 @@
           <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Apellido2" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="PermisosID" Nullable="false" />
-          <Property Type="Int32" Name="Activos" Nullable="false" />
+          <Property Type="Boolean" Name="Activos" Nullable="false" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
         </ComplexType>
@@ -257,37 +397,52 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CrazyTechModelStoreContainer" CdmEntityContainer="CrazyTechEntities">
-          <EntitySetMapping Name="EstadoTickets">
+          <EntitySetMapping Name="Bitacora">
+            <EntityTypeMapping TypeName="CrazyTechModel.Bitacora">
+              <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="Usuario_Error_ID" ColumnName="Usuario_Error_ID" />
+                <ScalarProperty Name="Descripcion_Error" ColumnName="Descripcion_Error" />
+                <ScalarProperty Name="ID_Controller" ColumnName="ID_Controller" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="ID_Action" ColumnName="ID_Action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriaProducto">
+            <EntityTypeMapping TypeName="CrazyTechModel.CategoriaProducto">
+              <MappingFragment StoreEntitySet="CategoriaProducto">
+                <ScalarProperty Name="CategoriaProductoID" ColumnName="CategoriaProductoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoTicket">
             <EntityTypeMapping TypeName="CrazyTechModel.EstadoTicket">
               <MappingFragment StoreEntitySet="EstadoTicket">
                 <ScalarProperty Name="EstadoTicket_ID" ColumnName="EstadoTicket_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Facturas">
-            <EntityTypeMapping TypeName="CrazyTechModel.Factura">
-              <MappingFragment StoreEntitySet="Factura">
-                <ScalarProperty Name="TicketIDFactura" ColumnName="TicketIDFactura" />
-                <ScalarProperty Name="Usuario_Empleado_Asig" ColumnName="Usuario_Empleado_Asig" />
-                <ScalarProperty Name="Usuario_Cliente" ColumnName="Usuario_Cliente" />
-                <ScalarProperty Name="Estado_Ticket" ColumnName="Estado_Ticket" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
-                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+            <EntityTypeMapping TypeName="CrazyTechModel.Facturas">
+              <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="Facturas_ID" ColumnName="Facturas_ID" />
+                <ScalarProperty Name="usuario_cliente_id" ColumnName="usuario_cliente_id" />
+                <ScalarProperty Name="ticket_ID" ColumnName="ticket_ID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permisos">
-            <EntityTypeMapping TypeName="CrazyTechModel.Permiso">
+            <EntityTypeMapping TypeName="CrazyTechModel.Permisos">
               <MappingFragment StoreEntitySet="Permisos">
                 <ScalarProperty Name="Permiso_ID" ColumnName="Permiso_ID" />
                 <ScalarProperty Name="Nivel" ColumnName="Nivel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Productoes">
+          <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="CrazyTechModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
@@ -296,20 +451,12 @@
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="PorcentajaDescuento" ColumnName="PorcentajaDescuento" />
+                <ScalarProperty Name="PorcentajeDescuento" ColumnName="PorcentajeDescuento" />
+                <ScalarProperty Name="CategoriaProductoID" ColumnName="CategoriaProductoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductoTickets">
-            <EntityTypeMapping TypeName="CrazyTechModel.ProductoTicket">
-              <MappingFragment StoreEntitySet="ProductoTicket">
-                <ScalarProperty Name="Producto_ID" ColumnName="Producto_ID" />
-                <ScalarProperty Name="Id_Ticket" ColumnName="Id_Ticket" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tickets">
+          <EntitySetMapping Name="Ticket">
             <EntityTypeMapping TypeName="CrazyTechModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
                 <ScalarProperty Name="TicketID" ColumnName="TicketID" />
@@ -323,7 +470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="CrazyTechModel.Usuario">
+            <EntityTypeMapping TypeName="CrazyTechModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -336,11 +483,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ActualizarUsuarios" FunctionName="CrazyTechModel.Store.ActualizarUsuarios" />
+          <EntitySetMapping Name="ProductoTicket">
+            <EntityTypeMapping TypeName="CrazyTechModel.ProductoTicket">
+              <MappingFragment StoreEntitySet="ProductoTicket">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Actualizar_Ticket" FunctionName="CrazyTechModel.Store.Actualizar_Ticket" />
+          <FunctionImportMapping FunctionImportName="Actualizar_Usuarios" FunctionName="CrazyTechModel.Store.Actualizar_Usuarios" />
+          <FunctionImportMapping FunctionImportName="Consultar_Categoria_Producto" FunctionName="CrazyTechModel.Store.Consultar_Categoria_Producto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Categoria_Producto_Result">
+                <ScalarProperty Name="CategoriaProductoID" ColumnName="CategoriaProductoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Consultar_Factura" FunctionName="CrazyTechModel.Store.Consultar_Factura">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Factura_Result">
-                <ScalarProperty Name="TicketIDFactura" ColumnName="TicketIDFactura" />
+                <ScalarProperty Name="Facturas_ID" ColumnName="Facturas_ID" />
+                <ScalarProperty Name="usuario_cliente_id" ColumnName="usuario_cliente_id" />
+                <ScalarProperty Name="ticket_ID" ColumnName="ticket_ID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Consultar_Producto" FunctionName="CrazyTechModel.Store.Consultar_Producto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Producto_Result">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="PorcentajeDescuento" ColumnName="PorcentajeDescuento" />
+                <ScalarProperty Name="CategoriaProductoID" ColumnName="CategoriaProductoID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Consultar_Tiquetes_Activos_Usuario" FunctionName="CrazyTechModel.Store.Consultar_Tiquetes_Activos_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Tiquetes_Activos_Usuario_Result">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
                 <ScalarProperty Name="Usuario_Empleado_Asig" ColumnName="Usuario_Empleado_Asig" />
                 <ScalarProperty Name="Usuario_Cliente" ColumnName="Usuario_Cliente" />
                 <ScalarProperty Name="Estado_Ticket" ColumnName="Estado_Ticket" />
@@ -351,6 +540,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Eliminar_Factura" FunctionName="CrazyTechModel.Store.Eliminar_Factura" />
+          <FunctionImportMapping FunctionImportName="Eliminar_Producto_Ticket" FunctionName="CrazyTechModel.Store.Eliminar_Producto_Ticket" />
           <FunctionImportMapping FunctionImportName="Eliminar_Usuarios" FunctionName="CrazyTechModel.Store.Eliminar_Usuarios" />
           <FunctionImportMapping FunctionImportName="Ingresar_Usuario" FunctionName="CrazyTechModel.Store.Ingresar_Usuario">
             <ResultMapping>
@@ -366,6 +556,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Registrar_Factura" FunctionName="CrazyTechModel.Store.Registrar_Factura" />
+          <FunctionImportMapping FunctionImportName="Registrar_Producto_Ticket" FunctionName="CrazyTechModel.Store.Registrar_Producto_Ticket" />
+          <FunctionImportMapping FunctionImportName="Registrar_Ticket" FunctionName="CrazyTechModel.Store.Registrar_Ticket" />
           <FunctionImportMapping FunctionImportName="Registrar_Usuarios" FunctionName="CrazyTechModel.Store.Registrar_Usuarios" />
         </EntityContainerMapping>
       </Mapping>
@@ -381,10 +574,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

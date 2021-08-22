@@ -131,7 +131,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Bitacora.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaProducto.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consultar_Categoria_Producto_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Consultar_Factura_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consultar_Producto_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consultar_Tiquetes_Activos_Usuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,7 +157,7 @@
     <Compile Include="EstadoTicket.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Factura.cs">
+    <Compile Include="Facturas.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -167,7 +182,7 @@
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuarioModel.cs" />
-    <Compile Include="Permiso.cs">
+    <Compile Include="Permisos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">
@@ -180,7 +195,7 @@
     <Compile Include="Ticket.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="Usuarios.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -224,13 +239,6 @@
     <Content Include="fonts\LineIcons.ttf" />
     <Content Include="fonts\LineIcons.woff" />
     <Content Include="fonts\LineIcons.woff2" />
-    <EntityDeploy Include="ModelBD.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ModelBD.edmx.diagram">
-      <DependentUpon>ModelBD.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -249,6 +257,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="ModelBD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModelBD.edmx.diagram">
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\contact-form.js" />
     <Content Include="Scripts\count-up.min.js" />

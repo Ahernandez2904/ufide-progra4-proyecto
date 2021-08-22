@@ -12,9 +12,12 @@ namespace Proyecto
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoTicket
+    public partial class Bitacora
     {
-        public int EstadoTicket_ID { get; set; }
-        public string Nombre { get; set; }
+        public int Usuario_Error_ID { get; set; }
+        public string Descripcion_Error { get; set; }
+        public int ID_Controller { get; set; }
+        public Nullable<System.DateTime> Hora { get; set; }
+        public int ID_Action { get; set; }
     }
 }

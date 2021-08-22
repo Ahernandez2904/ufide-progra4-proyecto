@@ -12,9 +12,9 @@ namespace Proyecto
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoTicket
+    public partial class CategoriaProducto
     {
-        public int EstadoTicket_ID { get; set; }
+        public int CategoriaProductoID { get; set; }
         public string Nombre { get; set; }
     }
 }

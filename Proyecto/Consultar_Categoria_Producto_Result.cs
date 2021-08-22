@@ -10,11 +10,10 @@
 namespace Proyecto
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EstadoTicket
+    public partial class Consultar_Categoria_Producto_Result
     {
-        public int EstadoTicket_ID { get; set; }
+        public int CategoriaProductoID { get; set; }
         public string Nombre { get; set; }
     }
 }

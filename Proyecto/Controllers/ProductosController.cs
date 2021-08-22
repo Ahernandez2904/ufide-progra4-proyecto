@@ -20,8 +20,8 @@ namespace Proyecto.Controllers
 
             using (var contexto = new CrazyTechEntities())
             {
-
-                var resultado = (from x in contexto.Productoes
+                //antes productoes
+                var resultado = (from x in contexto.Producto
                                  select x).ToList();
 
                 return View(resultado);
@@ -46,15 +46,15 @@ namespace Proyecto.Controllers
        
 
             {
-                
-                Producto producti= new Producto();
+                //antes productoes
+                Producto producti = new Producto();
                 producti.NombreProducto = modelo.NombreProducto;
                 producti.Cantidad = modelo.Cantidad;
                 producti.Precio = modelo.Precio;
            
-                producti.PorcentajaDescuento = modelo.PorcentajaDescuento;
+                producti.PorcentajeDescuento = modelo.PorcentajeDescuento;
                 producti.Descripcion = modelo.Descripcion;
-                contexto.Productoes.Add(producti);
+                contexto.Producto.Add(producti);
                 contexto.SaveChanges();
                 return RedirectToAction("Productos", "Productos");
             }
@@ -71,8 +71,8 @@ namespace Proyecto.Controllers
 
 
             {
-
-                var resultado = (from x in contexto.Productoes
+                //antes productoes
+                var resultado = (from x in contexto.Producto
                                  where x.ProductoID == modelo.ProductoID
                                  select x).FirstOrDefault();
 
@@ -86,12 +86,14 @@ namespace Proyecto.Controllers
         {
             using (var contexto = new CrazyTechEntities())
             {
-                var resultado = (from x in contexto.Productoes
+                //antes productoes
+                var resultado = (from x in contexto.Producto
                                  where x.ProductoID == modelo.ProductoID
                                  select x).FirstOrDefault();
                if (resultado != null)
                 {
-                    contexto.Productoes.Remove(resultado);
+                    //antes productoes
+                    contexto.Producto.Remove(resultado);
                     contexto.SaveChanges();
                     return RedirectToAction("Productos", "Productos");
                 }

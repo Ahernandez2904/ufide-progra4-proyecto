@@ -8,7 +8,7 @@ namespace Proyecto.Models
     public class UsuarioModel
     {
 
-        public void RegistrarUsuario(string nombre, string apellido1, string apellido2, int permisosID, int activos, string password, string email)
+        public void RegistrarUsuario(string nombre, string apellido1, string apellido2, int permisosID, Boolean activos, string password, string email)
         {
             using (var contextoBD = new CrazyTechEntities())
             {
@@ -26,9 +26,9 @@ namespace Proyecto.Models
             }
         }
 
-        public List<Usuario> ConsultarUsuarios()
+        public List<Usuarios> ConsultarUsuarios()
         {
-            List<Usuario> usuarioRespuesta = new List<Usuario>();
+            List<Usuarios> usuarioRespuesta = new List<Usuarios>();
 
             using (var contexto = new CrazyTechEntities())
             {
@@ -37,7 +37,7 @@ namespace Proyecto.Models
 
                 foreach (var item in resultado)
                 {
-                    usuarioRespuesta.Add(new Usuario
+                    usuarioRespuesta.Add(new Usuarios
                     {
                         UsuarioID = item.UsuarioID,
                         Email = item.Email

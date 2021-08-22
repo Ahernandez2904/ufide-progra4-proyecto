@@ -12,9 +12,11 @@ namespace Proyecto
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoTicket
+    public partial class Facturas
     {
-        public int EstadoTicket_ID { get; set; }
-        public string Nombre { get; set; }
+        public int Facturas_ID { get; set; }
+        public int usuario_cliente_id { get; set; }
+        public int ticket_ID { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
     }
 }

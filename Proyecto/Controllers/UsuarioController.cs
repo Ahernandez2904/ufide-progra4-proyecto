@@ -61,7 +61,7 @@ namespace Proyecto.Controllers
         [HttpPost]
         public ActionResult RegistroUsuarioJS(string nombre, string apellido1, string apellido2, string password, string email)
         {
-            modelillo.RegistrarUsuario(nombre, apellido1, apellido2, 0, 1, password, email);
+            modelillo.RegistrarUsuario(nombre, apellido1, apellido2, 2, true, password, email);
             return RedirectToAction("Perfil", "Usuario");
         }
 
@@ -120,18 +120,18 @@ namespace Proyecto.Controllers
                 
         }
 
-        public ActionResult RegistrarUsuario(Usuario modelo)
+        public ActionResult RegistrarUsuario(Usuarios modelo)
         {
    
             using (var contexto = new CrazyTechEntities())
 
             {
-                Usuario usuari= new Usuario();
+                Usuarios usuari= new Usuarios();
                 usuari.Nombre = modelo.Nombre;
                 usuari.Apellido1 = modelo.Apellido1;
                 usuari.Apellido2 = modelo.Apellido2;
-                usuari.PermisosID = 0;
-                usuari.Activos = 1;
+                usuari.PermisosID = 2;
+                usuari.Activos = true;
                 usuari.Password = modelo.Password;
                 usuari.Email = modelo.Email;
                 contexto.Usuarios.Add(usuari);
