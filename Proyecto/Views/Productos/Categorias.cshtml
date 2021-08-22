@@ -1,31 +1,40 @@
-﻿@model Proyecto.Entidades.UsuarioObj
+﻿@model IEnumerable<CategoriaProducto>
 @{
     ViewBag.Title = "Categorías de productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>Categorías de productos</h1>
-<section class="gallery-section gallery-style-4 mb-80">
-    <div class="container">
-        <div class="row">
-            <!--Inicio de la categoría de producto-->
-            <div class="col-lg-4 col-md-6">
-                <div class="single-gallery">
-                    <div class="image">
-                        <img src="~/images/crazytech/logo-completo.png" />
-                        <div class="overlay">
-                            <div class="action">
-                                <!--<a href="#0"> <i class="lni lni-link"></i> </a> Corregir Ale-->
-                                @Html.ActionLink("Producto", "Productos", "Productos")
+@using (Html.BeginForm("Productos", "Productos", FormMethod.Post))
+{
+    
+    <section class="gallery-section gallery-style-4 mb-80">
+        <div class="container">
+            <div class="row">
+                <!--Inicio de la categoría de producto-->
+              
+                <div class="col-lg-4 col-md-12">
+                    @foreach (var item in Model)
+                    {
+                        <div class="single-gallery">
+                            <div class="image">
+                                <img src="~/images/crazytech/logo-completo.png" />
+                                <div class="overlay">
+                                    <div class="action">
+                                        <!--<a href="#0"> <i class="lni lni-link"></i> </a> Corregir Ale-->
+                                        <!--@Html.ActionLink("Producto", "Productos", "Productos")-->
+                                        <button type="submit" name="procesarFormulario" value="@item.Nombre" class="btn btn-light">@item.Nombre</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <h5>@item.Nombre</h5>
+                                <p>Aquí va una pequeña descripción de los procesadores</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="info">
-                        <h5>Procesadores</h5>
-                        <p>Aquí va una pequeña descripción de los procesadores</p>
-                    </div>
+                    }
                 </div>
+                <!--Fin de la categoría de producto-->
             </div>
-            <!--Fin de la categoría de producto-->
         </div>
-    </div>
-</section>
+    </section>
+}

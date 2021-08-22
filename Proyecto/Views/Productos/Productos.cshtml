@@ -41,20 +41,16 @@
             if (!Session["Datos"].Equals(2))
             {
                 <tr>
-                    <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID)"></td>
+                    <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
                     <td>@item.NombreProducto</td>
                     <td>@item.Descripcion</td>
-
                     <td>@item.Precio</td>
                     <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
-              
-                
                 </tr>
             }
             else
             {
                 <tr>
-
                     <td><input type="radio" name="usuarios" 
                                onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
                     <td>@item.ProductoID</td><!--Ocultar si lo ve un cliente-->

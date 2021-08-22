@@ -10,23 +10,113 @@ namespace Proyecto.Controllers
 {
     public class ProductosController : Controller
     {
+        [VerificarLogin]
         public ActionResult Categorias() 
         {
-            return View(); 
-        }
-
-        public ActionResult Productos() 
-        {
-
             using (var contexto = new CrazyTechEntities())
             {
-                //antes productoes
-                var resultado = (from x in contexto.Producto
+                var resultado = (from x in contexto.CategoriaProducto
                                  select x).ToList();
-
                 return View(resultado);
             }
-            
+        }
+
+        public ActionResult Productos(Producto producto, String procesarFormulario)
+        {
+
+            if (procesarFormulario == "Procesador")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 1
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if (procesarFormulario == "Tarjeta madre")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 2
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if (procesarFormulario == "Tarjeta gráfica")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 3
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if (procesarFormulario == "RAM")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 4
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if(procesarFormulario == "Almacenamiento")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 5
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if(procesarFormulario == "Enfriamiento")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 6
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if(procesarFormulario == "Fuente de poder")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 7
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }else if (procesarFormulario == "Case")
+            {
+                using (var contexto = new CrazyTechEntities())
+                {
+                    //antes productoes
+                    var resultado = (from x in contexto.Producto
+                                     where x.CategoriaProductoID == 8
+                                     select x).ToList();
+
+                    return View(resultado);
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
         [VerificarLogin]
         public ActionResult ActualizarProducto() 
@@ -105,5 +195,7 @@ namespace Proyecto.Controllers
             }
            
         }
+
+      
+        }
     }
-}
