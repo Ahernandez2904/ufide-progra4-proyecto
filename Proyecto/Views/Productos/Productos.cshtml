@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th></th>
-            @if (Session["Datos"].Equals(0))
+            @if (!Session["Datos"].Equals(2))
             {
            
                 <th>Nombre</th>
@@ -38,7 +38,7 @@
         <!--row starts here-->
         @foreach (var item in Model)
         {
-            if (Session["Datos"].Equals(0))
+            if (!Session["Datos"].Equals(2))
             {
                 <tr>
                     <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID)"></td>
