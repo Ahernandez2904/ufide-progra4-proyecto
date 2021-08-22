@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Proyecto.ActionFilters;
+﻿using Proyecto.ActionFilters;
 using Proyecto.Entidades;
 using Proyecto.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Proyecto.Controllers
 {
@@ -27,17 +24,15 @@ namespace Proyecto.Controllers
             UsuarioObj user = new UsuarioObj();
             return View(user);
         }
+
         public ActionResult RegistroUsuarios()
         {
-
             return View();
-
         }
+
         [VerificarLogin]
         public ActionResult Perfil()
         {
-
-           
             return View();
         }
 
@@ -67,26 +62,22 @@ namespace Proyecto.Controllers
 
         public ActionResult IngresoUsuarioJS(UsuarioObj usuario)
         {
-
             using (var contexto = new CrazyTechEntities())
             {
                 var resultado = (from x in contexto.Usuarios
                                  where x.Email == usuario.email && x.Password == usuario.password
                                  select x).FirstOrDefault();
-
-
                 if (resultado != null)
                 {
                     return Json(JsonRequestBehavior.AllowGet);
-             
                 }
                 else
                 {
                     return View();
                 }
             }
-
         }
+
         [HttpPost]
         public ActionResult IngresoUsuarios(UsuarioObj usuario)
         {
@@ -95,7 +86,6 @@ namespace Proyecto.Controllers
                 var resultado = (from x in contexto.Usuarios
                                  where x.Email == usuario.email && x.Password == usuario.password
                                  select x).FirstOrDefault();
-               
                 if (resultado != null)
                 {
                     if (resultado.PermisosID == 1)
@@ -108,25 +98,20 @@ namespace Proyecto.Controllers
                         Session["Datos"] = resultado.PermisosID;
                         return RedirectToAction("Index", "Home");
                     }
-                  
                 }
                 else
                 {
                     ViewBag.ErrorVista = "Verifique sus credenciales";
                     return View();
                 }
-           
             }
-                
         }
 
         public ActionResult RegistrarUsuario(Usuarios modelo)
         {
-   
             using (var contexto = new CrazyTechEntities())
-
             {
-                Usuarios usuari= new Usuarios();
+                Usuarios usuari = new Usuarios();
                 usuari.Nombre = modelo.Nombre;
                 usuari.Apellido1 = modelo.Apellido1;
                 usuari.Apellido2 = modelo.Apellido2;
@@ -136,12 +121,9 @@ namespace Proyecto.Controllers
                 usuari.Email = modelo.Email;
                 contexto.Usuarios.Add(usuari);
                 contexto.SaveChanges();
-                return RedirectToAction("IngresoUsuario", "Usuario");
+                return RedirectToAction("", "Usuario");
             }
-
         }
-
-
 
     }
 }
