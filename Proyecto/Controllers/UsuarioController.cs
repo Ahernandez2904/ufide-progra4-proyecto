@@ -98,7 +98,7 @@ namespace Proyecto.Controllers
                
                 if (resultado != null)
                 {
-                    if (resultado.PermisosID == 1)
+                    if (resultado.PermisosID == 2)
                     {
                         Session["Datos"] = resultado.PermisosID;
                         return RedirectToAction("Index", "Home");
