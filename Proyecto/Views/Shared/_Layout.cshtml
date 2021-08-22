@@ -35,42 +35,30 @@
                                 <span class="toggler-icon"></span><span class="toggler-icon"></span><span class="toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent2">
-                                <ul id="nav2" class="navbar-nav ml-auto">
-                                    <li class="nav-item">@Html.ActionLink("Categorías de productos", "Categorias", "Productos", new { }, new { @class = "page-scroll" })</li>
-                                </ul>
-
-                                <!--El navbar no se ve tan bonito, pero se arregla cuando hay menor cantidad de elementos.-->
                                 <!--If session datos diferente de null-->
                                 @if (Session["Datos"] != null)
                                 {
+                                    <ul id="nav2" class="navbar-nav ml-auto">
+                                        <li class="nav-item">@Html.ActionLink("Categorías de productos", "Categorias", "Productos", new { }, new { @class = "page-scroll" })</li>
+                                    </ul>
+                                    @Html.ActionLink("Mi Perfil", "Perfil", "Usuario", new { }, new { @class = "button button-sm border-button radius-30 mr-20" })
                                     if (Session["Datos"].Equals(0))
                                     {
-                                        @Html.ActionLink("Mi Perfil", "Perfil", "Usuario", new { }, new { @class = "button button-sm border-button radius-30 mr-20" })
-                                        <!-- If la session es de cliente-->@Html.ActionLink("Hacer solicitud", "Solicitud", "Tiquetes", new { }, new { @class = "button button-sm radius-30" })
+                                        <!-- If la session es de cliente-->
+                                        @Html.ActionLink("Hacer solicitud", "Solicitud", "Tiquetes", new { }, new { @class = "button button-sm radius-30" })
                                     }
                                     else
                                     {
-
-                                        @Html.ActionLink("Mi Perfil", "Perfil", "Usuario", new { }, new { @class = "button button-sm border-button radius-30 mr-20" })
-                                        <!-- If la session es de administrador-->@Html.ActionLink("Revisar tiquetes", "Solicitudes", "Tiquetes", new { }, new { @class = "button button-sm radius-30" })
+                                        <!-- If la session es de administrador-->
+                                        @Html.ActionLink("Revisar tiquetes", "Solicitudes", "Tiquetes", new { }, new { @class = "button button-sm radius-30" })
                                     }
-
-
-
-
-                                    <!--Else la session está vacía-->
                                 }
                                 else
                                 {
+                                    <ul id="nav2" class="navbar-nav ml-auto"></ul>
                                     @Html.ActionLink("Iniciar sesión", "IngresoUsuarios", "Usuario", new { }, new { @class = "button button-sm border-button radius-30 mr-20" })
                                     @Html.ActionLink("Registrarse", "RegistroUsuarios", "Usuario", new { }, new { @class = "button button-sm radius-30" })
                                 }
-
-
-
-
-
-                                <!--Else la session está vacía FIN-->
                             </div>
                         </nav>
                     </div>
