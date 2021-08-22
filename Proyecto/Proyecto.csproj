@@ -132,6 +132,11 @@
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\TiquetesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Entidades\Factura.cs" />
+    <Compile Include="Entidades\CategoriaProducto.cs" />
+    <Compile Include="Entidades\Producto.cs" />
+    <Compile Include="Entidades\ProductoTicketObj.cs" />
+    <Compile Include="Entidades\TicketObj.cs" />
     <Compile Include="Entidades\UsuarioObj.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

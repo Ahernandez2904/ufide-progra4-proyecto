@@ -7,8 +7,7 @@ namespace Proyecto.Entidades
 {
     public class UsuarioObj
     {
-
-        public string id { get; set; }
+        public int id { get; set; }
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
@@ -19,6 +18,6 @@ namespace Proyecto.Entidades
 
         public string apellido2 { get; set; }
 
-        public int activo { get; set; }
+        public bool activo { get; set; }
     }
 }
