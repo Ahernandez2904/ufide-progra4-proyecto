@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Producto>
-
 @{
     ViewBag.Title = "Listado de productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,69 +8,73 @@
     <thead>
         <tr>
             <th></th>
-            @if (!Session["Datos"].Equals(2))
+            @if (Session["Datos"] != null)
             {
-           
-                <th>Nombre</th>
-                <th>Descripción</th>
-
-                <th>Precio</th>
-                <th>Descuento</th>
-           
-            
+                if (!Session["Datos"].Equals(2))
+                {
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                }
+                else
+                {
+                    <th>ID</th><!--Ocultar si lo ve un cliente-->
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th><!--Ocultar si lo ve un cliente-->
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Activo</th><!--Ocultar si lo ve un cliente-->
+                    <th>Actualizar / Eliminar</th><!--Ocultar si lo ve un cliente-->
+                }
             }
-            else
-            {
-                <th>ID</th><!--Ocultar si lo ve un cliente-->
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Cantidad</th><!--Ocultar si lo ve un cliente-->
-                <th>Precio</th>
-                <th>Descuento</th>
-                <th>Activo</th><!--Ocultar si lo ve un cliente-->
-                <th>Actualizar / Eliminar</th><!--Ocultar si lo ve un cliente-->
-            }
-          
         </tr>
     </thead>
     <tbody>
         <!--row starts here-->
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            if (!Session["Datos"].Equals(2))
+            foreach (var item in Model)
             {
-                <tr>
-                    <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
-                    <td>@item.NombreProducto</td>
-                    <td>@item.Descripcion</td>
-                    <td>@item.Precio</td>
-                    <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
-                </tr>
-            }
-            else
-            {
-                <tr>
-                    <td><input type="radio" name="usuarios" 
-                               onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
-                    <td>@item.ProductoID</td><!--Ocultar si lo ve un cliente-->
-                    <td>@item.NombreProducto</td>
-                    <td>@item.Descripcion</td>
-                    <td>@item.Cantidad</td><!--Ocultar si lo ve un cliente-->
-                    <td>@item.Precio</td>
-                    <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
-                    <td><input type="checkbox" name="usuarios" onclick="" disabled></td><!--Ocultar si lo ve un cliente-->
-                    <td>
-                        <!--<a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Actualizar</a>/
-                    <a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Eliminar</a>-->
-                        @Html.ActionLink("Actualizar", "ActualizarProducto", "Productos", new { }, new Dictionary<string, object> { { "data-toggle", "" }, { "data-target", "" }, { "data-id", "" } }) /
-                        <a href="">Eliminar</a> <!--Quizá un alert-->
-                    </td>
-                </tr>
-            }
+                if (Session["Datos"] != null)
+                {
+                    if (!Session["Datos"].Equals(2))
+                    {
+                    <tr>
+                        <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>
+                        <td>@item.NombreProducto</td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.Precio</td>
+                        <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
+                    </tr>
+                    }
+                    else
+                    {
+                    <tr>
+                        <td>
+                            <input type="radio" name="usuarios"
+                                   onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)">
+                        </td>
+                        <td>@item.ProductoID</td><!--Ocultar si lo ve un cliente-->
+                        <td>@item.NombreProducto</td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.Cantidad</td><!--Ocultar si lo ve un cliente-->
+                        <td>@item.Precio</td>
+                        <td>@item.PorcentajeDescuento</td><!--Ocultar si lo ve un cliente, si lo está viendo un cliente ni siquiera debe mostrarlo si el elemento no está activo-->
+                        <td><input type="checkbox" name="usuarios" onclick="" disabled></td><!--Ocultar si lo ve un cliente-->
+                        <td>
+                            <!--<a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Actualizar</a>/
+                            <a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Eliminar</a>-->
+                            @Html.ActionLink("Actualizar", "ActualizarProducto", "Productos", new { }, new Dictionary<string, object> { { "data-toggle", "" }, { "data-target", "" }, { "data-id", "" } }) /
+                            <a href="">Eliminar</a> <!--Quizá un alert-->
+                        </td>
+                    </tr>
+                    }
 
+                }
+            }
         }
-
-
         @*@Html.Partial("EliminarProductoPartial")*@
         <!--Row ends here-->
     </tbody>
