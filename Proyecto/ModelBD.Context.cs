@@ -175,12 +175,8 @@ namespace Proyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Ingresar_Usuario_Result>("Ingresar_Usuario", emailParameter, passwordParameter);
         }
     
-        public virtual int Registrar_Factura(Nullable<int> facturas_ID, Nullable<int> usuario_cliente_id, Nullable<int> ticket_ID, Nullable<System.DateTime> fecha)
+        public virtual int Registrar_Factura(Nullable<int> usuario_cliente_id, Nullable<int> ticket_ID, Nullable<System.DateTime> fecha)
         {
-            var facturas_IDParameter = facturas_ID.HasValue ?
-                new ObjectParameter("Facturas_ID", facturas_ID) :
-                new ObjectParameter("Facturas_ID", typeof(int));
-    
             var usuario_cliente_idParameter = usuario_cliente_id.HasValue ?
                 new ObjectParameter("usuario_cliente_id", usuario_cliente_id) :
                 new ObjectParameter("usuario_cliente_id", typeof(int));
@@ -193,7 +189,7 @@ namespace Proyecto
                 new ObjectParameter("fecha", fecha) :
                 new ObjectParameter("fecha", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Factura", facturas_IDParameter, usuario_cliente_idParameter, ticket_IDParameter, fechaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Factura", usuario_cliente_idParameter, ticket_IDParameter, fechaParameter);
         }
     
         public virtual int Registrar_Producto_Ticket(Nullable<int> producto_ID, Nullable<int> id_Ticket, Nullable<int> cantidad)
@@ -213,12 +209,8 @@ namespace Proyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Producto_Ticket", producto_IDParameter, id_TicketParameter, cantidadParameter);
         }
     
-        public virtual int Registrar_Ticket(Nullable<int> ticketID, Nullable<int> usuario_Empleado_Asig, Nullable<int> usuario_Cliente, Nullable<int> estado_Ticket, Nullable<System.DateTime> fecha, Nullable<int> presupuesto, string detalles)
+        public virtual int Registrar_Ticket(Nullable<int> usuario_Empleado_Asig, Nullable<int> usuario_Cliente, Nullable<int> estado_Ticket, Nullable<System.DateTime> fecha, Nullable<int> presupuesto, string detalles)
         {
-            var ticketIDParameter = ticketID.HasValue ?
-                new ObjectParameter("TicketID", ticketID) :
-                new ObjectParameter("TicketID", typeof(int));
-    
             var usuario_Empleado_AsigParameter = usuario_Empleado_Asig.HasValue ?
                 new ObjectParameter("Usuario_Empleado_Asig", usuario_Empleado_Asig) :
                 new ObjectParameter("Usuario_Empleado_Asig", typeof(int));
@@ -243,7 +235,7 @@ namespace Proyecto
                 new ObjectParameter("Detalles", detalles) :
                 new ObjectParameter("Detalles", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Ticket", ticketIDParameter, usuario_Empleado_AsigParameter, usuario_ClienteParameter, estado_TicketParameter, fechaParameter, presupuestoParameter, detallesParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar_Ticket", usuario_Empleado_AsigParameter, usuario_ClienteParameter, estado_TicketParameter, fechaParameter, presupuestoParameter, detallesParameter);
         }
     
         public virtual int Registrar_Usuarios(string nombre, string apellido1, string apellido2, Nullable<int> permisosID, Nullable<bool> activos, string password, string email)

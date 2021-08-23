@@ -135,7 +135,6 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Registrar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Facturas_ID" Type="int" Mode="In" />
           <Parameter Name="usuario_cliente_id" Type="int" Mode="In" />
           <Parameter Name="ticket_ID" Type="int" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
@@ -146,7 +145,6 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
         <Function Name="Registrar_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TicketID" Type="int" Mode="In" />
           <Parameter Name="Usuario_Empleado_Asig" Type="int" Mode="In" />
           <Parameter Name="Usuario_Cliente" Type="int" Mode="In" />
           <Parameter Name="Estado_Ticket" Type="int" Mode="In" />
@@ -323,7 +321,6 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Registrar_Factura">
-            <Parameter Name="Facturas_ID" Mode="In" Type="Int32" />
             <Parameter Name="usuario_cliente_id" Mode="In" Type="Int32" />
             <Parameter Name="ticket_ID" Mode="In" Type="Int32" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -334,7 +331,6 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Registrar_Ticket">
-            <Parameter Name="TicketID" Mode="In" Type="Int32" />
             <Parameter Name="Usuario_Empleado_Asig" Mode="In" Type="Int32" />
             <Parameter Name="Usuario_Cliente" Mode="In" Type="Int32" />
             <Parameter Name="Estado_Ticket" Mode="In" Type="Int32" />
