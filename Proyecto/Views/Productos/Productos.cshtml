@@ -10,7 +10,8 @@
             <th></th>
             @if (Session["Datos"] != null)
             {
-                if (!Session["Datos"].Equals(2))
+                var s = this.Session["Datos"] as Usuarios;
+                if (!s.PermisosID.Equals(2))
                 {
                     <th>Nombre</th>
                     <th>Descripción</th>
@@ -39,7 +40,8 @@
             {
                 if (Session["Datos"] != null)
                 {
-                    if (!Session["Datos"].Equals(2))
+                    var s = this.Session["Datos"] as Usuarios;
+                    if (!s.PermisosID.Equals(2))
                     {
                     <tr>
                         <td><input type="radio" name="usuarios" onclick="SeleccionaProducto(@item.ProductoID, '@item.NombreProducto', '@item.Descripcion', @item.Cantidad, @item.Precio, @item.PorcentajeDescuento)"></td>

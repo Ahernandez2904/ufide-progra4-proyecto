@@ -21,7 +21,7 @@ namespace Proyecto.Controllers
         /*[VerificarLogin]
         public ActionResult Solicitudes() { 
             int estado ticket = 1;
-            var l = modelillo.ConsultarTiquetesActivosUsuario()
+            var l = modelillo.ConsultarTiquetesActivosUsuario();
             return View();
         }*/
     }

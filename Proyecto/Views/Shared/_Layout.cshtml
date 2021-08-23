@@ -42,7 +42,8 @@
                                         <li class="nav-item">@Html.ActionLink("Categorías de productos", "Categorias", "Productos", new { }, new { @class = "page-scroll" })</li>
                                     </ul>
                                     @Html.ActionLink("Mi Perfil", "Perfil", "Usuario", new { }, new { @class = "button button-sm border-button radius-30 mr-20" })
-                                    if (!Session["Datos"].Equals(2))
+                                    var s = this.Session["Datos"] as Usuarios;
+                                    if (!s.PermisosID.Equals(2))
                                     {
                                         <!-- If la session es de cliente-->
                                         @Html.ActionLink("Hacer solicitud", "Solicitud", "Tiquetes", new { }, new { @class = "button button-sm radius-30" })

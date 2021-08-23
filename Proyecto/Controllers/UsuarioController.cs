@@ -3,6 +3,8 @@ using Proyecto.Entidades;
 using Proyecto.Models;
 using System.Linq;
 using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Proyecto.Controllers
 {
@@ -81,7 +83,8 @@ namespace Proyecto.Controllers
         [HttpPost]
         public ActionResult IngresoUsuarios(UsuarioObj usuario)
         {
-            using (var contexto = new CrazyTechEntities())
+            //Anterior
+            /*using (var contexto = new CrazyTechEntities())
             {
                 var resultado = (from x in contexto.Usuarios
                                  where x.Email == usuario.email && x.Password == usuario.password
@@ -98,6 +101,29 @@ namespace Proyecto.Controllers
                         Session["Datos"] = resultado.PermisosID;
                         return RedirectToAction("Index", "Home");
                     }
+                }
+                else
+                {
+                    ViewBag.ErrorVista = "Verifique sus credenciales";
+                    return View();
+                }
+            }*/
+
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = (from x in contexto.Usuarios
+                                 where x.Email == usuario.email && x.Password == usuario.password
+                                 select x).FirstOrDefault();
+                if (resultado != null)
+                {
+                    List<Usuarios> usuarioRespuesta = new List<Usuarios>();
+                    usuarioRespuesta.Add(new Usuarios
+                    {
+                        UsuarioID = resultado.UsuarioID,
+                        PermisosID = resultado.PermisosID
+                    });
+                    Session["Datos"] = resultado;
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
