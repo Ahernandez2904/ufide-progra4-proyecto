@@ -3,21 +3,6 @@
     ViewBag.Title = "Perfil";
 }
 
-
-<section class="login-section login-style-2 mb-80">
-    <div class="container">
-        <div class="login-wrapper img-bg">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-xl-5 offset-xl-1">
-                    <div class="login-content-wrapper">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 @if (Session["Datos"] != null)
 {
     var s = this.Session["Datos"] as Usuarios;
@@ -78,8 +63,7 @@
     }
 }
 
-<input type="button" value="Cerrar sesión" class="button button-sm radius-10 btn-bloc"
-       onclick="logoutJS();">
+<input type="button" value="Cerrar sesión" class="button button-sm radius-10 btn-bloc" onclick="logoutJS();">
 
 <script>
     function myFunction() {

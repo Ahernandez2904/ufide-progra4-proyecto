@@ -81,7 +81,6 @@ namespace Proyecto.Controllers
             TicketModel tm = new TicketModel();
             tm.ActualizarTicket(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, Fecha, Presupuesto, Detalles, TicketID);
             mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
-
             return View(mymodel);
         }
 
