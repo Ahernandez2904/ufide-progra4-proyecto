@@ -11,7 +11,7 @@ namespace Proyecto.Controllers
     public class ProductosController : Controller
     {
         [VerificarLogin]
-        public ActionResult Categorias() 
+        public ActionResult Categorias()
         {
             using (var contexto = new CrazyTechEntities())
             {
@@ -36,7 +36,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if (procesarFormulario == "Tarjeta madre")
+            }
+            else if (procesarFormulario == "Tarjeta madre")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -47,7 +48,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if (procesarFormulario == "Tarjeta gráfica")
+            }
+            else if (procesarFormulario == "Tarjeta gráfica")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -58,7 +60,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if (procesarFormulario == "RAM")
+            }
+            else if (procesarFormulario == "RAM")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -69,7 +72,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if(procesarFormulario == "Almacenamiento")
+            }
+            else if (procesarFormulario == "Almacenamiento")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -80,7 +84,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if(procesarFormulario == "Enfriamiento")
+            }
+            else if (procesarFormulario == "Enfriamiento")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -91,7 +96,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if(procesarFormulario == "Fuente de poder")
+            }
+            else if (procesarFormulario == "Fuente de poder")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -102,7 +108,8 @@ namespace Proyecto.Controllers
 
                     return View(resultado);
                 }
-            }else if (procesarFormulario == "Case")
+            }
+            else if (procesarFormulario == "Case")
             {
                 using (var contexto = new CrazyTechEntities())
                 {
@@ -120,34 +127,46 @@ namespace Proyecto.Controllers
             }
         }
         [VerificarLogin]
-        public ActionResult ActualizarProducto() 
-        
-        { 
-            
-            return View(); 
-        
-        
+        public ActionResult ActualizarProducto(Producto producto, int procesarFormulario)
+        {
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = (from x in contexto.Producto
+                                 where x.ProductoID == procesarFormulario
+                                 select x).FirstOrDefault();
+
+                return View(resultado);
+            }
         }
 
         [VerificarLogin]
         public ActionResult InsertarProducto(Producto modelo)
         {
-     
+
             using (var contexto = new CrazyTechEntities())
-       
+
 
             {
-                //antes productoes
-                Producto producti = new Producto();
-                producti.NombreProducto = modelo.NombreProducto;
-                producti.Cantidad = modelo.Cantidad;
-                producti.Precio = modelo.Precio;
-           
-                producti.PorcentajeDescuento = modelo.PorcentajeDescuento;
-                producti.Descripcion = modelo.Descripcion;
-                contexto.Producto.Add(producti);
+                var resultado = (from x in contexto.Producto
+                                 where x.ProductoID == modelo.ProductoID
+                                 select x).FirstOrDefault();
+
+                resultado.NombreProducto = modelo.NombreProducto;
+                resultado.Precio = modelo.Precio;
+                resultado.PorcentajeDescuento = modelo.PorcentajeDescuento;
+                resultado.Descripcion = modelo.Descripcion;
+                resultado.Cantidad = modelo.Cantidad;
                 contexto.SaveChanges();
-                return RedirectToAction("Productos", "Productos");
+
+
+            }
+
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultadoRespuesta = (from x in contexto.Producto
+                                          where x.CategoriaProductoID == modelo.ProductoID
+                                          select x).ToList();
+                return RedirectToAction("Categorias", "Productos", resultadoRespuesta);
             }
 
         }
@@ -167,23 +186,24 @@ namespace Proyecto.Controllers
                                  where x.ProductoID == modelo.ProductoID
                                  select x).FirstOrDefault();
 
-                
+
                 return View(resultado);
             }
 
         }
 
-        public ActionResult EliminarUsuario(Producto modelo)
+        public ActionResult EliminarJS(Producto producto)
         {
             using (var contexto = new CrazyTechEntities())
             {
-                //antes productoes
+
+
                 var resultado = (from x in contexto.Producto
-                                 where x.ProductoID == modelo.ProductoID
+                                 where x.ProductoID == producto.ProductoID
                                  select x).FirstOrDefault();
-               if (resultado != null)
+                if (resultado != null)
                 {
-                    //antes productoes
+
                     contexto.Producto.Remove(resultado);
                     contexto.SaveChanges();
                     return RedirectToAction("Productos", "Productos");
@@ -192,11 +212,27 @@ namespace Proyecto.Controllers
                 {
                     return View();
                 }
-                
+
             }
-           
+
         }
 
-      
+        public ActionResult ActualizarJS(Producto producto)
+        {
+            using (var contexto = new CrazyTechEntities())
+            {
+
+
+                var resultado = (from x in contexto.Producto
+                                 where x.ProductoID == producto.ProductoID
+                                 select x).FirstOrDefault();
+                return Json(JsonRequestBehavior.AllowGet);
+
+            }
+
         }
+
+
+
     }
+}

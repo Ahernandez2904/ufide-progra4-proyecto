@@ -8,70 +8,71 @@
 
 
 
-    <h1>Actualizar producto</h1>
-    <section id="contact" class="contact-section contact-style-1 mb-80">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contact-form-wrapper">
-                        <!--<i class="lni lni-text-format"></i> <i class="lni lni-user"></i> <i class="lni lni-envelope"></i> <i class="lni lni-phone"></i> <i class="lni lni-comments-alt"></i>-->
-                        @using (Html.BeginForm("InsertarProducto", "Productos", FormMethod.Post))
-                        {
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="single-input">
-                                        <label for="nombre">Nombre del producto</label>
-                                        @Html.TextBoxFor(Model => Model.NombreProducto, new { @class = "form-control", @id= "NombreProducto" })
-                                        <i class="lni lni-coin"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single-input">
-                                        <label for="cantidad">Cantidad</label>
-                                        @Html.TextBoxFor(Model => Model.Cantidad, new { @class = "form-control" })
-                                        <i class="lni lni-coin"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single-input">
-                                        <label for="precio">Precio</label>
-                                        @Html.TextBoxFor(Model => Model.Precio, new { @class = "form-control" })
-                                        <i class="lni lni-coin"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single-input">
-                                        <label for="descuento">Porcentaje de descuento</label>
-                                        @Html.TextBoxFor(Model => Model.PorcentajeDescuento, new { @class = "form-control" })
-                                        <i class="lni lni-coin"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-input">
-                                        <label for="descripcion">Descripción</label>
-                                        @Html.TextAreaFor(Model => Model.Descripcion, new { @class = "form-control" })
-                                        <i class="lni lni-comments-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <input type="checkbox" name="activo" onclick=""> Habilitar producto
-                                </div>
-                                <br /><br />
-                                <div class="col-md-12">
-                                    <div class="form-button">
-                                        <button type="submit" class="button radius-10">Actualizar<i class="lni lni-telegram-original"></i></button>
-                                    </div>
+<h1>Actualizar producto</h1>
+<section id="contact" class="contact-section contact-style-1 mb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-form-wrapper">
+                    <!--<i class="lni lni-text-format"></i> <i class="lni lni-user"></i> <i class="lni lni-envelope"></i> <i class="lni lni-phone"></i> <i class="lni lni-comments-alt"></i>-->
+                    @using (Html.BeginForm("InsertarProducto", "Productos", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="nombre">Nombre del producto</label>
+                                    @Html.TextBoxFor(Model => Model.NombreProducto, new { @class = "form-control", @id = "NombreProducto" })
+                                    @Html.TextBoxFor(Model => Model.ProductoID, new { @readonly = "readonly", @hidden = "true" })
+                                    <i class="lni lni-coin"></i>
                                 </div>
                             </div>
-                        }
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="cantidad">Cantidad</label>
+                                    @Html.TextBoxFor(Model => Model.Cantidad, new { @class = "form-control" })
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="precio">Precio</label>
+                                    @Html.TextBoxFor(Model => Model.Precio, new { @class = "form-control" })
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label for="descuento">Porcentaje de descuento</label>
+                                    @Html.TextBoxFor(Model => Model.PorcentajeDescuento, new { @class = "form-control" })
+                                    <i class="lni lni-coin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="single-input">
+                                    <label for="descripcion">Descripción</label>
+                                    @Html.TextAreaFor(Model => Model.Descripcion, new { @class = "form-control" })
+                                    <i class="lni lni-comments-alt"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="checkbox" name="activo" onclick=""> Habilitar producto
+                            </div>
+                            <br /><br />
+                            <div class="col-md-12">
+                                <div class="form-button">
+                                    <button type="submit" class="button radius-10">Actualizar<i class="lni lni-telegram-original"></i></button>
+                                </div>
+                            </div>
                         </div>
+                    }
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="contact-image">
-            <img src="~/images/form/illustation.svg" alt="">
-        </div>
-    </section>
+    <div class="contact-image">
+        <img src="~/images/form/illustation.svg" alt="">
+    </div>
+</section>
 }
 
