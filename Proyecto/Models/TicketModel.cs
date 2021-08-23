@@ -64,7 +64,7 @@ namespace Proyecto.Models
             return usuarioRespuesta;
         }
 
-        public List<Ticket> ConsultarTiquetesActivosUsuario(int id, Boolean activo)
+        public List<Ticket> ConsultarTiquetesActivosUsuario(int id, int activo)
         {
             List<Ticket> usuarioRespuesta = new List<Ticket>();
             using (var contexto = new CrazyTechEntities())

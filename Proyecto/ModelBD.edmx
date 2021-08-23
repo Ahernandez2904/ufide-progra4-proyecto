@@ -122,7 +122,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         </Function>
         <Function Name="Consultar_Tiquetes_Activos_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="activo" Type="bit" Mode="In" />
+          <Parameter Name="activo" Type="int" Mode="In" />
         </Function>
         <Function Name="Eliminar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TicketIDFactura" Type="bigint" Mode="In" />
@@ -312,7 +312,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           </FunctionImport>
           <FunctionImport Name="Consultar_Tiquetes_Activos_Usuario" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Usuario_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="activo" Mode="In" Type="Boolean" />
+            <Parameter Name="activo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Eliminar_Factura">
             <Parameter Name="TicketIDFactura" Mode="In" Type="Int64" />
