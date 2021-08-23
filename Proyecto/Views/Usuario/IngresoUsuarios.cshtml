@@ -49,16 +49,16 @@
                 <div class="col-lg-6 col-xl-5 offset-xl-1">
                     <div class="login-content-wrapper">
                         <div class="section-title mb-40"><h3 class="mb-20">Iniciar sesión</h3></div>
-                        @using (Html.BeginForm("IngresoUsuarios", "Usuario", FormMethod.Post, new { @class = "login-form" }))
+                        @using (Html.BeginForm("IngresoUsuarios", "Usuario", FormMethod.Post, new { @class = "login-form", required = "" }))
                         {
                             <div class="single-input">
                                 <!--<label for="login-email">Email</label>-->
-                                @Html.TextBoxFor(Model => Model.email, new { @class = "login-form", placeholder = "Correo electrónico" })
+                                @Html.TextBoxFor(Model => Model.email, new { @class = "login-form", placeholder = "Correo electrónico", required = "" })
                                 <i class="lni lni-envelope"></i>
                             </div>
                             <div class="single-input">
                                 <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.password, new { @class = "login-form", placeholder = "Contraseña" })
+                                @Html.TextBoxFor(Model => Model.password, new { @class = "login-form", placeholder = "Contraseña", required = "" })
                                 <i class="lni lni-lock"></i>
                             </div>
 
