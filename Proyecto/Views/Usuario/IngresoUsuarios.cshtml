@@ -74,8 +74,11 @@
                                 <input type="submit" value="Iniciar sesión" class="button button-lg radius-10 btn-bloc" style="width:100%">
                             </div>
                             <p class="mb-25">¿No tienes una cuenta? @Html.ActionLink("Registrate aquí", "RegistroUsuarios", "Usuario")</p>
+                            <p class="text-danger">
+                                @ViewBag.FirstNameError
+                            </p>
                         }
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
