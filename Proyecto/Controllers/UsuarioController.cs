@@ -33,17 +33,38 @@ namespace Proyecto.Controllers
             return View();
         }
 
+        [HttpGet]
         [VerificarLogin]
         public ActionResult Perfil()
         {
-            int estado_t = 2;
+            int estado_t = 2; //Ya fue aprobado por el técnico
             var s = this.Session["Datos"] as Usuarios;
             dynamic mymodel = new ExpandoObject();
             TicketModel tm = new TicketModel();
             mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
+            //mymodel.cpt = tm.ConsultarProductoTicket()
             //Agregar model por aquí, si tienen una pregunta me avisan
             return View(mymodel);
         }
+
+
+        [HttpPost]
+        [VerificarLogin]
+        public ActionResult Perfil(int Usuario_Empleado_Asig, int Usuario_Cliente, int Estado_Ticket, int Presupuesto, 
+            string Detalles, int TicketID) {
+
+            var Fecha = DateTime.Today;
+            int estado_t = 2; //Ya fue aprobado por el técnico
+            var s = this.Session["Datos"] as Usuarios;
+            dynamic mymodel = new ExpandoObject();
+            TicketModel tm = new TicketModel();
+            tm.ActualizarTicket(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, Fecha, Presupuesto, Detalles, TicketID);
+            mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
+
+            return View(mymodel);
+        }
+
+        //[HttpPost]
 
         //public ActionResult RegistrarUsuario(UsuarioObj obj)
         //{

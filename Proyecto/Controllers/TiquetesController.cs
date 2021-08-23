@@ -22,11 +22,12 @@ namespace Proyecto.Controllers
 
         [VerificarLogin]
         [HttpPost]
-        public ActionResult Solicitud(int Usuario_Empleado_Asig, int Usuario_Cliente, int Presupuesto, string Detalles)
+        public ActionResult Solicitud(int Presupuesto, string Detalles)
         {
+            var s = this.Session["Datos"] as Usuarios;
             var estado_t = 1; //activo
             var fecha = System.DateTime.Now;
-            modelillo.RegistrarTicket(Usuario_Empleado_Asig, Usuario_Cliente, estado_t, fecha, Presupuesto, Detalles);
+            modelillo.RegistrarTicket(1, s.UsuarioID, estado_t, fecha, Presupuesto, Detalles);
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model Ticket
 @{
     ViewBag.Title = "Enviar solicitud";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,19 +10,21 @@
             <div class="col-lg-8">
                 <div class="contact-form-wrapper">
                     <!--<i class="lni lni-text-format"></i> <i class="lni lni-user"></i> <i class="lni lni-envelope"></i> <i class="lni lni-phone"></i> <i class="lni lni-comments-alt"></i>-->
-                    <form action="" method="POST">
+                    @using (Html.BeginForm("Solicitud", "Tiquetes", FormMethod.Post, new { @class = "login-form" }))
+                    {
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="single-input">
                                     <label for="presupuesto">Presupuesto</label>
-                                    <input type="text" id="presupuesto" name="presupuesto" class="form-input" placeholder="0">
+                                    @Html.TextBoxFor(Model => Model.Presupuesto, new { @class = "login-form", placeholder = "Ticket" })
                                     <i class="lni lni-coin"></i>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="single-input">
                                     <label for="detalles">Detalles</label>
-                                    <textarea name="detalles" id="detalles" class="form-input" placeholder="Descripción del productos" rows="6"></textarea>
+                                    <!--<textarea name="detalles" id="detalles" class="form-input" placeholder="Descripción del productos" rows="6"></textarea>-->
+                                    @Html.TextBoxFor(Model => Model.Detalles, new { @class = "login-form", placeholder = "Detalles" })
                                     <i class="lni lni-comments-alt"></i>
                                 </div>
                             </div>
@@ -32,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
