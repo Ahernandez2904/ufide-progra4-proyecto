@@ -14,15 +14,28 @@ namespace Proyecto.Controllers
         TicketModel modelillo = new TicketModel();
 
         [VerificarLogin]
-        public ActionResult Solicitud() { 
-            return View(); 
-        }
-        
-        /*[VerificarLogin]
-        public ActionResult Solicitudes() { 
-            int estado ticket = 1;
-            var l = modelillo.ConsultarTiquetesActivosUsuario();
+        [HttpGet]
+        public ActionResult Solicitud() {
             return View();
-        }*/
+        }
+
+        [VerificarLogin]
+        [HttpPost]
+        public ActionResult Solicitud(int Usuario_Empleado_Asig, int Usuario_Cliente, int Presupuesto, string Detalles)
+        {
+            var estado_t = 1; //activo
+            var fecha = System.DateTime.Now;
+            modelillo.RegistrarTicket(Usuario_Empleado_Asig, Usuario_Cliente, estado_t, fecha, Presupuesto, Detalles);
+            return View();
+        }
+
+        [VerificarLogin]
+        [HttpGet]
+        public ActionResult Solicitudes() { 
+            int estado_t = 1;
+            var s = this.Session["Datos"] as Usuarios;
+            var l = modelillo.ConsultarTiquetesActivos(estado_t);
+            return View(l);
+        }
     }
 }

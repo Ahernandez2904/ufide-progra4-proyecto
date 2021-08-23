@@ -120,6 +120,9 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         <Function Name="Consultar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Consultar_Tiquetes_Activos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="activo" Type="int" Mode="In" />
+        </Function>
         <Function Name="Consultar_Tiquetes_Activos_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="activo" Type="int" Mode="In" />
@@ -310,6 +313,9 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <FunctionImport Name="Consultar_Producto_Ticket" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Ticket_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Consultar_Tiquetes_Activos" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Result)">
+            <Parameter Name="activo" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="Consultar_Tiquetes_Activos_Usuario" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Usuario_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="activo" Mode="In" Type="Int32" />
@@ -380,6 +386,15 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <Property Type="Int32" Name="ProductoID" Nullable="false" />
           <Property Type="Int32" Name="TicketID" Nullable="false" />
           <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Consultar_Tiquetes_Activos_Result">
+          <Property Type="Int32" Name="TicketID" Nullable="false" />
+          <Property Type="Int32" Name="Usuario_Empleado_Asig" Nullable="false" />
+          <Property Type="Int32" Name="Usuario_Cliente" Nullable="false" />
+          <Property Type="Int32" Name="Estado_Ticket" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Presupuesto" Nullable="false" />
+          <Property Type="String" Name="Detalles" Nullable="false" MaxLength="400" />
         </ComplexType>
         <ComplexType Name="Consultar_Tiquetes_Activos_Usuario_Result">
           <Property Type="Int32" Name="TicketID" Nullable="false" />
@@ -541,6 +556,19 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
                 <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
                 <ScalarProperty Name="TicketID" ColumnName="TicketID" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Consultar_Tiquetes_Activos" FunctionName="CrazyTechModel.Store.Consultar_Tiquetes_Activos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Tiquetes_Activos_Result">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="Usuario_Empleado_Asig" ColumnName="Usuario_Empleado_Asig" />
+                <ScalarProperty Name="Usuario_Cliente" ColumnName="Usuario_Cliente" />
+                <ScalarProperty Name="Estado_Ticket" ColumnName="Estado_Ticket" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

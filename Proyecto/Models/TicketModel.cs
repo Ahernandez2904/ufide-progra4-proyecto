@@ -87,5 +87,29 @@ namespace Proyecto.Models
             }
             return usuarioRespuesta;
         }
+
+        public List<Ticket> ConsultarTiquetesActivos(int activo)
+        {
+            List<Ticket> usuarioRespuesta = new List<Ticket>();
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = contexto.Consultar_Tiquetes_Activos(activo);
+
+                foreach (var item in resultado)
+                {
+                    usuarioRespuesta.Add(new Ticket
+                    {
+                        TicketID = item.TicketID,
+                        Usuario_Empleado_Asig = item.Usuario_Empleado_Asig,
+                        Usuario_Cliente = item.Usuario_Cliente,
+                        Estado_Ticket = item.Estado_Ticket,
+                        Fecha = item.Fecha,
+                        Presupuesto = item.Presupuesto,
+                        Detalles = item.Detalles
+                    });
+                }
+            }
+            return usuarioRespuesta;
+        }
     }
 }
