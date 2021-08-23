@@ -117,6 +117,9 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         <Function Name="Consultar_Categoria_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Consultar_Factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Consultar_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Consultar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="Consultar_Tiquetes_Activos_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="activo" Type="bit" Mode="In" />
@@ -126,6 +129,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         </Function>
         <Function Name="Eliminar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoID" Type="bigint" Mode="In" />
+          <Parameter Name="TicketID" Type="bigint" Mode="In" />
         </Function>
         <Function Name="Eliminar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioID" Type="bigint" Mode="In" />
@@ -303,6 +307,9 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <FunctionImport Name="Consultar_Categoria_Producto" ReturnType="Collection(CrazyTechModel.Consultar_Categoria_Producto_Result)" />
           <FunctionImport Name="Consultar_Factura" ReturnType="Collection(CrazyTechModel.Consultar_Factura_Result)" />
           <FunctionImport Name="Consultar_Producto" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Result)" />
+          <FunctionImport Name="Consultar_Producto_Ticket" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Ticket_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="Consultar_Tiquetes_Activos_Usuario" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Usuario_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="activo" Mode="In" Type="Boolean" />
@@ -312,6 +319,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           </FunctionImport>
           <FunctionImport Name="Eliminar_Producto_Ticket">
             <Parameter Name="ProductoID" Mode="In" Type="Int64" />
+            <Parameter Name="TicketID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="Eliminar_Usuarios">
             <Parameter Name="UsuarioID" Mode="In" Type="Int64" />
@@ -367,6 +375,11 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <Property Type="Int32" Name="Precio" Nullable="false" />
           <Property Type="Int32" Name="PorcentajeDescuento" Nullable="false" />
           <Property Type="Int32" Name="CategoriaProductoID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Consultar_Producto_Ticket_Result">
+          <Property Type="Int32" Name="ProductoID" Nullable="false" />
+          <Property Type="Int32" Name="TicketID" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Consultar_Tiquetes_Activos_Usuario_Result">
           <Property Type="Int32" Name="TicketID" Nullable="false" />
@@ -519,6 +532,15 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="PorcentajeDescuento" ColumnName="PorcentajeDescuento" />
                 <ScalarProperty Name="CategoriaProductoID" ColumnName="CategoriaProductoID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Consultar_Producto_Ticket" FunctionName="CrazyTechModel.Store.Consultar_Producto_Ticket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Producto_Ticket_Result">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

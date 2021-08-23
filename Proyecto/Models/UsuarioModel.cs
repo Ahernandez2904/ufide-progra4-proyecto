@@ -47,7 +47,12 @@ namespace Proyecto.Models
             return usuarioRespuesta;
         }
 
-        
-
+        public void RegistrarFactura(int Usuario_Cliente, int ticket_ID, DateTime Fecha)
+        {
+            using (var contextoBD = new CrazyTechEntities())
+            {
+                contextoBD.Registrar_Factura(Usuario_Cliente, ticket_ID, Fecha);
+            }
+        }
     }
 }

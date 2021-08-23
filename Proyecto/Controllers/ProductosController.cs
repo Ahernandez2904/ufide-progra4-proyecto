@@ -21,6 +21,7 @@ namespace Proyecto.Controllers
             }
         }
 
+        [VerificarLogin]
         public ActionResult Productos(Producto producto, String procesarFormulario)
         {
 

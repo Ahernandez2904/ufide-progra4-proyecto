@@ -122,6 +122,15 @@ namespace Proyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Producto_Result>("Consultar_Producto");
         }
     
+        public virtual ObjectResult<Consultar_Producto_Ticket_Result> Consultar_Producto_Ticket(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Producto_Ticket_Result>("Consultar_Producto_Ticket", idParameter);
+        }
+    
         public virtual ObjectResult<Consultar_Tiquetes_Activos_Usuario_Result> Consultar_Tiquetes_Activos_Usuario(Nullable<int> id, Nullable<bool> activo)
         {
             var idParameter = id.HasValue ?
@@ -144,13 +153,17 @@ namespace Proyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar_Factura", ticketIDFacturaParameter);
         }
     
-        public virtual int Eliminar_Producto_Ticket(Nullable<long> productoID)
+        public virtual int Eliminar_Producto_Ticket(Nullable<long> productoID, Nullable<long> ticketID)
         {
             var productoIDParameter = productoID.HasValue ?
                 new ObjectParameter("ProductoID", productoID) :
                 new ObjectParameter("ProductoID", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar_Producto_Ticket", productoIDParameter);
+            var ticketIDParameter = ticketID.HasValue ?
+                new ObjectParameter("TicketID", ticketID) :
+                new ObjectParameter("TicketID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar_Producto_Ticket", productoIDParameter, ticketIDParameter);
         }
     
         public virtual int Eliminar_Usuarios(Nullable<long> usuarioID)
