@@ -27,7 +27,7 @@ namespace Proyecto.Controllers
             var s = this.Session["Datos"] as Usuarios;
             var estado_t = 1; //activo
             var fecha = System.DateTime.Now;
-            modelillo.RegistrarTicket(1, s.UsuarioID, estado_t, fecha, Presupuesto, Detalles);
+            modelillo.RegistrarTicket(2, s.UsuarioID, estado_t, fecha, Presupuesto, Detalles);
             return View();
         }
 

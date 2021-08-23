@@ -40,9 +40,10 @@
             </thead>
             <tbody>
                 <!--row goes here-->
-                <tr>
-                    @foreach (var item in Model.ctau)
-                    {
+
+                @foreach (var item in Model.ctau)
+                {
+                    <tr>
                         <td><input type="radio" name="usuarios" onclick=""></td>
                         <td>@item.TicketID</td>
                         <td>@item.Fecha</td>
@@ -68,13 +69,17 @@
                                    onclick="ActualizarTiqueteJS(@item.Usuario_Empleado_Asig, @item.Usuario_Cliente, 1, @item.Presupuesto, '@item.Detalles', @item.TicketID);">
 
                         </td>
-                    }
-                </tr>
+                    </tr>
+                }
+
                 <!--Row ends here-->
             </tbody>
         </table>
     }
 }
+
+<input type="button" value="Cerrar sesión" class="button button-sm radius-10 btn-bloc"
+       onclick="logoutJS();">
 
 <script>
     function myFunction() {

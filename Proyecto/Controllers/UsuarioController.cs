@@ -59,6 +59,15 @@ namespace Proyecto.Controllers
             return View();
         }
 
+        [VerificarLogin]
+        [HttpGet]
+        public ActionResult logoutJS()
+        {
+            Session.Abandon();
+            //return RedirectToAction("IngresoUsuarios", "Usuario");
+            return View();
+        }
+
 
         [HttpPost]
         [VerificarLogin]

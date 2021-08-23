@@ -48,7 +48,6 @@ function IngresarUsuario() {
         error: function (data) {
         }
     });
-
 }
 
 function ActualizarTiqueteJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, Presupuesto, Detalles, TicketID) {
@@ -71,5 +70,22 @@ function ActualizarTiqueteJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Tick
             alert('mal');
         }
     });
+
+}
+
+function logoutJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, Presupuesto, Detalles, TicketID) {
+
+    $.ajax({
+        type: 'GET',
+        url: '/Usuario/logoutJS',
+        dataType: 'json',
+        success: function (data) {
+
+        },
+        error: function (data) {
+
+        }
+    });
+    location.reload();
 
 }
