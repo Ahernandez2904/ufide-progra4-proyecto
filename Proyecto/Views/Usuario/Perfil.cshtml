@@ -34,7 +34,8 @@
                     <th>Cliente</th>
                     <th>Presupuesto</th>
                     <th>Detalles</th>
-                    <th>Ver / Aprobar / Reprobar</th>
+                    <td>Ver productos</td>
+                    <th>Aprobar / Reprobar</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,9 +51,19 @@
                         <td>@item.Presupuesto</td>
                         <td><span title="@item.Detalles">Ver más detalles</span> <!--Quizá un alert--></td>
                         <td>
-                            <a href="">Ver</a> / 
-                            <a href="">Reprobar</a> / 
-                            <a href="">Eliminar</a>
+                            <select id="SomeId" name="SomeId" class="your-class-here">
+                                @foreach (var item2 in Model.cpt)
+                                {
+                                    if (item2.TicketID == item.TicketID)
+                                    {
+                                        <option value="">@item2.ProductoID @item2.Precio @item2.NombreProducto</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <a href="">Aprobar</a> /
+                            <a href="">Reprobar</a>
                         </td>
                     }
                 </tr>

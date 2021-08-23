@@ -42,7 +42,18 @@ namespace Proyecto.Controllers
             dynamic mymodel = new ExpandoObject();
             TicketModel tm = new TicketModel();
             mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
-            //mymodel.cpt = tm.ConsultarProductoTicket()
+            mymodel.cpt = tm.ConsultarProductoTicket2();
+            //Agregar model por aquí, si tienen una pregunta me avisan
+            return View(mymodel);
+        }
+
+        public ActionResult Aprobar() {
+            int estado_t = 2; //Ya fue aprobado por el técnico
+            var s = this.Session["Datos"] as Usuarios;
+            dynamic mymodel = new ExpandoObject();
+            TicketModel tm = new TicketModel();
+            mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
+            mymodel.cpt = tm.ConsultarProductoTicket2();
             //Agregar model por aquí, si tienen una pregunta me avisan
             return View(mymodel);
         }

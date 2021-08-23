@@ -120,6 +120,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         <Function Name="Consultar_Producto_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Consultar_Producto_Ticket2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Consultar_Tiquetes_Activos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="activo" Type="int" Mode="In" />
         </Function>
@@ -313,6 +314,7 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
           <FunctionImport Name="Consultar_Producto_Ticket" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Ticket_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Consultar_Producto_Ticket2" ReturnType="Collection(CrazyTechModel.Consultar_Producto_Ticket2_Result)" />
           <FunctionImport Name="Consultar_Tiquetes_Activos" ReturnType="Collection(CrazyTechModel.Consultar_Tiquetes_Activos_Result)">
             <Parameter Name="activo" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -385,6 +387,13 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
         <ComplexType Name="Consultar_Producto_Ticket_Result">
           <Property Type="Int32" Name="ProductoID" Nullable="false" />
           <Property Type="Int32" Name="TicketID" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Consultar_Producto_Ticket2_Result">
+          <Property Type="Int32" Name="ProductoID" Nullable="false" />
+          <Property Type="Int32" Name="TicketID" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Precio" Nullable="false" />
           <Property Type="Int32" Name="Cantidad" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Consultar_Tiquetes_Activos_Result">
@@ -555,6 +564,17 @@ advertencia 6002: La tabla o vista 'CrazyTech.dbo.ProductoTicket' no tiene defin
               <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Producto_Ticket_Result">
                 <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
                 <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Consultar_Producto_Ticket2" FunctionName="CrazyTechModel.Store.Consultar_Producto_Ticket2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrazyTechModel.Consultar_Producto_Ticket2_Result">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>

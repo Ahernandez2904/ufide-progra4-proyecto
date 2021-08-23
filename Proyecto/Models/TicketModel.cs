@@ -64,6 +64,29 @@ namespace Proyecto.Models
             return usuarioRespuesta;
         }
 
+        public List<ProductoTicketIJ> ConsultarProductoTicket2()
+        {
+            List<ProductoTicketIJ> usuarioRespuesta = new List<ProductoTicketIJ>();
+
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = contexto.Consultar_Producto_Ticket2();
+
+                foreach (var item in resultado)
+                {
+                    usuarioRespuesta.Add(new ProductoTicketIJ
+                    {
+                        ProductoID = item.ProductoID,
+                        TicketID = item.TicketID,
+                        Cantidad = item.Cantidad,
+                        NombreProducto = item.NombreProducto,
+                        Precio = item.Precio
+                    });
+                }
+            }
+            return usuarioRespuesta;
+        }
+
         public List<Ticket> ConsultarTiquetesActivosUsuario(int id, int activo)
         {
             List<Ticket> usuarioRespuesta = new List<Ticket>();

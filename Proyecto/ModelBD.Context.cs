@@ -131,6 +131,11 @@ namespace Proyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Producto_Ticket_Result>("Consultar_Producto_Ticket", idParameter);
         }
     
+        public virtual ObjectResult<Consultar_Producto_Ticket2_Result> Consultar_Producto_Ticket2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Consultar_Producto_Ticket2_Result>("Consultar_Producto_Ticket2");
+        }
+    
         public virtual ObjectResult<Consultar_Tiquetes_Activos_Result> Consultar_Tiquetes_Activos(Nullable<int> activo)
         {
             var activoParameter = activo.HasValue ?
