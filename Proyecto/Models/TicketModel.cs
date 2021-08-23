@@ -111,5 +111,51 @@ namespace Proyecto.Models
             }
             return usuarioRespuesta;
         }
+
+        public List<CategoriaProducto> ConsultarCategoriaProducto()
+        {
+            List<CategoriaProducto> usuarioRespuesta = new List<CategoriaProducto>();
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = contexto.Consultar_Categoria_Producto();
+
+                foreach (var item in resultado)
+                {
+                    usuarioRespuesta.Add(new CategoriaProducto
+                    {
+                        CategoriaProductoID = item.CategoriaProductoID,
+                        Nombre = item.Nombre
+                    });
+                }
+                return usuarioRespuesta;
+            }
+        }
+
+        public List<Producto> ConsultarProductos()
+        {
+            List<Producto> usuarioRespuesta = new List<Producto>();
+            using (var contexto = new CrazyTechEntities())
+            {
+                var resultado = contexto.Consultar_Producto();
+
+                foreach (var item in resultado)
+                {
+                    usuarioRespuesta.Add(new Producto
+                    {
+                        ProductoID = item.ProductoID,
+                        NombreProducto = item.NombreProducto,
+                        Descripcion = item.Descripcion,
+                        Cantidad = item.Cantidad,
+                        Activo = item.Activo,
+                        Precio = item.Precio,
+                        PorcentajeDescuento = item.PorcentajeDescuento,
+                        CategoriaProductoID = item.CategoriaProductoID
+                    });
+                }
+                return usuarioRespuesta;
+            }
+        }
+
+        //Final
     }
 }

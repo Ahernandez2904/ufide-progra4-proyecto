@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,8 +35,11 @@ namespace Proyecto.Controllers
         public ActionResult Solicitudes() { 
             int estado_t = 1;
             var s = this.Session["Datos"] as Usuarios;
-            var l = modelillo.ConsultarTiquetesActivos(estado_t);
-            return View(l);
+            dynamic mymodel = new ExpandoObject();
+            mymodel.cta = modelillo.ConsultarTiquetesActivos(estado_t);
+            mymodel.cp = modelillo.ConsultarProductos();
+            mymodel.ccp = modelillo.ConsultarCategoriaProducto();
+            return View(mymodel);
         }
     }
 }

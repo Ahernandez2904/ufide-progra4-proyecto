@@ -149,6 +149,9 @@
     <Compile Include="Consultar_Producto_Ticket_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Consultar_Tiquetes_Activos_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Consultar_Tiquetes_Activos_Usuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -346,6 +349,7 @@
     <Content Include="Views\Usuario\RegistroUsuarios.cshtml" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Productos\EliminarProductoPartial.cshtml" />
+    <Content Include="Views\Tiquetes\ActualizarSolicitud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

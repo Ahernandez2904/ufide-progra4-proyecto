@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Proyecto.Controllers
 {
@@ -35,10 +36,14 @@ namespace Proyecto.Controllers
         [VerificarLogin]
         public ActionResult Perfil()
         {
-            return View();
+            int estado_t = 2;
+            var s = this.Session["Datos"] as Usuarios;
+            dynamic mymodel = new ExpandoObject();
+            TicketModel tm = new TicketModel();
+            mymodel.ctau = tm.ConsultarTiquetesActivosUsuario(s.UsuarioID, estado_t);
+            //Agregar model por aquí, si tienen una pregunta me avisan
+            return View(mymodel);
         }
-
-
 
         //public ActionResult RegistrarUsuario(UsuarioObj obj)
         //{

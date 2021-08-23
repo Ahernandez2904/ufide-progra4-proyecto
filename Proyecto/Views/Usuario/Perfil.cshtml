@@ -1,4 +1,4 @@
-﻿@model Usuarios
+﻿@model dynamic
 @{
     ViewBag.Title = "Perfil";
 }
@@ -10,33 +10,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-xl-5 offset-xl-1">
                     <div class="login-content-wrapper">
-                        <div class="section-title mb-40"><h3 class="mb-20">Perfil</h3></div>
-                        @using (Html.BeginForm("ObtenerUsuario", "Usuario", FormMethod.Post, new { @class = "login-form" }))
-                        {
-                            <div class="single-input">
-                                <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "login-form", placeholder = "Nombre" })
-                                <i class="lni lni-user"></i>
-                            </div>
-                            <div class="single-input">
-                                <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.Apellido1, new { @class = "login-form", placeholder = "Primer Apellido" })
-                                <i class="lni lni-user"></i>
-                            </div>
-                            <div class="single-input">
-                                <!--<label for="login-password">Password</label>-->
-                                @Html.TextBoxFor(Model => Model.Apellido2, new { @class = "login-form", placeholder = "Segundo Apellido" })
-                                <i class="lni lni-user"></i>
-                            </div>
-                            <div class="single-input">
-                                <!--<label for="login-email">Email</label>-->
-                                @Html.TextBoxFor(Model => Model.Email, new { @class = "login-form", placeholder = "Correo electrónico" })
-                                <i class="lni lni-envelope"></i>
-                            </div>
-  
-
-                        }
-
 
                     </div>
                 </div>
@@ -44,6 +17,50 @@
         </div>
     </div>
 </section>
+
+@if (Session["Datos"] != null)
+{
+    var s = this.Session["Datos"] as Usuarios;
+    if (!s.PermisosID.Equals(2))
+    {
+        <h1>Listado de tiquetes pendientes por aprobación</h1>
+        <table class="table table-striped table-bordered" id="tablaUsuarios">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Empleado</th>
+                    <th>Cliente</th>
+                    <th>Presupuesto</th>
+                    <th>Detalles</th>
+                    <th>Ver / Aprobar / Reprobar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--row goes here-->
+                <tr>
+                    @foreach (var item in Model.ctau)
+                    {
+                        <td><input type="radio" name="usuarios" onclick=""></td>
+                        <td>@item.TicketID</td>
+                        <td>@item.Fecha</td>
+                        <td>@item.Usuario_Empleado_Asig</td>
+                        <td>@item.Usuario_Cliente</td>
+                        <td>@item.Presupuesto</td>
+                        <td><span title="@item.Detalles">Ver más detalles</span> <!--Quizá un alert--></td>
+                        <td>
+                            <a href="">Ver</a> / 
+                            <a href="">Reprobar</a> / 
+                            <a href="">Eliminar</a>
+                        </td>
+                    }
+                </tr>
+                <!--Row ends here-->
+            </tbody>
+        </table>
+    }
+}
 
 <script>
     function myFunction() {
