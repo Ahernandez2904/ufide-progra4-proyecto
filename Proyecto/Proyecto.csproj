@@ -225,6 +225,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\LineIcons.svg" />
+    <Content Include="FuncionesJS\TicketJS.js" />
     <Content Include="FuncionesJS\ProductosJS.js" />
     <Content Include="FuncionesJS\UsuarioJS.js" />
     <Content Include="Global.asax" />
