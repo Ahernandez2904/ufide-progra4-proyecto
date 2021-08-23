@@ -18,7 +18,7 @@
                                     {
                                         if (item.CategoriaProductoID == 1)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item.ProductoID">@item.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -29,11 +29,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a2">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item2 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 2)
+                                        if (item2.CategoriaProductoID == 2)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item2.ProductoID">@item2.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -44,11 +44,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a3">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item3 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 3)
+                                        if (item3.CategoriaProductoID == 3)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item3.ProductoID">@item3.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -59,11 +59,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a4">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item4 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 4)
+                                        if (item4.CategoriaProductoID == 4)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item4.ProductoID">@item4.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -74,11 +74,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a5">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item5 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 5)
+                                        if (item5.CategoriaProductoID == 5)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item5.ProductoID">@item5.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -89,11 +89,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a6">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item6 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 6)
+                                        if (item6.CategoriaProductoID == 6)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item6.ProductoID">@item6.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -104,11 +104,11 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a7">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item7 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 7)
+                                        if (item7.CategoriaProductoID == 7)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item7.ProductoID">@item7.NombreProducto</option>
                                         }
                                     }
                                 </select>
@@ -119,19 +119,26 @@
                             <div class="single-input">
                                 <label for="presupuesto">Presupuesto</label>
                                 <select id="a8">
-                                    @foreach (var item in Model.cp)
+                                    @foreach (var item8 in Model.cp)
                                     {
-                                        if (item.CategoriaProductoID == 8)
+                                        if (item8.CategoriaProductoID == 8)
                                         {
-                                            <option value="@item.NombreProducto"></option>
+                                            <option value="@item8.ProductoID">@item8.NombreProducto</option>
                                         }
                                     }
                                 </select>
                                 <i class="lni lni-coin"></i>
                             </div>
                         </div>
-                        <input type="submit" value="Aprobar" class="button button-sm radius-10 btn-bloc"
-                               onclick="ActualizarTiqueteJS();">
+                        @foreach (var item9 in Model.cta)
+                        {
+                            if (item9.TicketID == Model.TicketID.TicketID)
+                            {
+                                <input type="submit" value="Aprobar" class="button button-sm radius-10 btn-bloc"
+                                       onclick="ActualizarTiqueteJS(@item9.Usuario_Empleado_Asig, @item9.Usuario_Cliente, 3,
+                                       @item9.Presupuesto, '@item9.Detalles', @item9.TicketID);">
+                            }
+                        }
                     </div>
                 </div>
             </div>

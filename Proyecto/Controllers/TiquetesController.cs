@@ -55,6 +55,7 @@ namespace Proyecto.Controllers
             modelillo.RegistrarProductoTicket(pid6, TicketID, 1);
             modelillo.RegistrarProductoTicket(pid7, TicketID, 1);
             modelillo.RegistrarProductoTicket(pid8, TicketID, 1);
+            Estado_Ticket = 2;
             modelillo.ActualizarTicket(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, DateTime.Today, Presupuesto, Detalles, TicketID);
             return View();
         }
@@ -70,13 +71,16 @@ namespace Proyecto.Controllers
 
         [VerificarLogin]
         [HttpGet]
-        public ActionResult TiqueteProducto()
+        public ActionResult TiqueteProducto(dynamic dynamic)
         {
+            var TicketID = 1;
             //var s = this.Session["Datos"] as Usuarios;
             dynamic mymodel = new ExpandoObject();
+            mymodel.cta = modelillo.ConsultarTiquetesActivos(1);
             mymodel.cp = modelillo.ConsultarProductos();
             mymodel.ccp = modelillo.ConsultarCategoriaProducto();
             mymodel.cpt = modelillo.ConsultarProductoTicket2();
+            mymodel.TicketID = modelillo.ConsultarTiquetesActivos2(TicketID);
             return View(mymodel);
         }
     }

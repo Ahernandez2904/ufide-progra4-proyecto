@@ -28,7 +28,7 @@ function ActualizarTiqueteJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Tick
             pid5: pid5,
             pid6: pid6,
             pid7: pid7,
-            pid8: pid8,
+            pid8: pid8
         },
         dataType: 'json',
         success: function (data) {

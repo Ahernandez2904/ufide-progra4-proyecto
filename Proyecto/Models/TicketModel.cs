@@ -135,6 +135,19 @@ namespace Proyecto.Models
             return usuarioRespuesta;
         }
 
+        public List<Ticket> ConsultarTiquetesActivos2(int id)
+        {
+            List<Ticket> usuarioRespuesta = new List<Ticket>();
+            using (var contexto = new CrazyTechEntities())
+            {
+                    usuarioRespuesta.Add(new Ticket
+                    {
+                        TicketID = id
+                    });
+            }
+            return usuarioRespuesta;
+        }
+
         public List<CategoriaProducto> ConsultarCategoriaProducto()
         {
             List<CategoriaProducto> usuarioRespuesta = new List<CategoriaProducto>();
