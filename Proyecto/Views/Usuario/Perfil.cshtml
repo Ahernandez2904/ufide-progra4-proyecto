@@ -62,8 +62,11 @@
                             </select>
                         </td>
                         <td>
-                            <a href="">Aprobar</a> /
-                            <a href="">Reprobar</a>
+                            <input type="submit" value="Aprobar" class="button button-sm radius-10 btn-bloc"
+                                   onclick="ActualizarTiqueteJS(@item.Usuario_Empleado_Asig, @item.Usuario_Cliente, 3, @item.Presupuesto, '@item.Detalles', @item.TicketID);">
+                            <input type="submit" value="Reprobar" class="button button-sm radius-10 btn-bloc"
+                                   onclick="ActualizarTiqueteJS(@item.Usuario_Empleado_Asig, @item.Usuario_Cliente, 1, @item.Presupuesto, '@item.Detalles', @item.TicketID);">
+
                         </td>
                     }
                 </tr>

@@ -44,7 +44,28 @@ function IngresarUsuario() {
         },
         dataType: 'json',
         success: function (data) {
-            alert('Usuario Encontrado');
+        },
+        error: function (data) {
+        }
+    });
+
+}
+
+function ActualizarTiqueteJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, Presupuesto, Detalles, TicketID) {
+    $.ajax({
+        type: 'POST',
+        url: '/Usuario/ActualizarTiqueteJS',
+        data: {
+            Usuario_Empleado_Asig: Usuario_Empleado_Asig,
+            Usuario_Cliente: Usuario_Cliente,
+            Estado_Ticket: Estado_Ticket,
+            Presupuesto: Presupuesto,
+            Detalles: Detalles,
+            TicketID: TicketID
+        },
+        dataType: 'json',
+        success: function (data) {
+            alert('Tiquete actualizado');
         },
         error: function (data) {
             alert('mal');
