@@ -64,10 +64,8 @@ function ActualizarTiqueteJS(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Tick
         },
         dataType: 'json',
         success: function (data) {
-            alert('Tiquete actualizado');
         },
         error: function (data) {
-            alert('mal');
         }
     });
 

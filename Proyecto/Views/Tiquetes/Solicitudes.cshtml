@@ -1,4 +1,4 @@
-﻿@model Proyecto.Entidades.UsuarioObj
+﻿@model dynamic
 @{
     ViewBag.Title = "Listado de tiquetes pendientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,29 +13,29 @@
             <th>Empleado</th>
             <th>Cliente</th>
             <th>Presupuesto</th>
-            <th>Estado</th>
             <th>Detalles</th>
-            <th>Actualizar / Eliminar</th>
         </tr>
     </thead>
     <tbody>
         <!--row goes here-->
+        
+        @foreach (var item in Model.cta)
+        {
         <tr>
             <td><input type="radio" name="usuarios" onclick=""></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="">Ver más detalles</a> <!--Quizá un alert--></td>
-            <td>
-                <!--<a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Actualizar</a>/
-                <a href="#" data-toggle="modal" data-target="#confirmacion" data-id="">Eliminar</a>-->
-                @Html.ActionLink("Actualizar", "ActualizarProducto", "Producto", new { }, new Dictionary<string, object> { { "data-toggle", "" }, { "data-target", "" }, { "data-id", "" } }) /
-                <a href="">Eliminar</a> <!--Quizá un alert-->
-            </td>
+            <td>@item.TicketID</td>
+            <td>@item.Fecha</td>
+            <td>@item.Usuario_Empleado_Asig</td>
+            <td>@item.Usuario_Cliente</td>
+            <td>@item.Presupuesto</td>
+            <td><span title="@item.Detalles">Ver más detalles</span> <!--Quizá un alert--></td>
         </tr>
+        }
+
         <!--Row ends here-->
     </tbody>
 </table>
+<br />
+<div>
+
+</div>

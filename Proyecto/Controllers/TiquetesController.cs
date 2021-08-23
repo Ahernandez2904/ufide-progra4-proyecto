@@ -42,5 +42,30 @@ namespace Proyecto.Controllers
             mymodel.ccp = modelillo.ConsultarCategoriaProducto();
             return View(mymodel);
         }
+
+        [HttpPost]
+        public ActionResult ActualizarTiqueteJS(int Usuario_Empleado_Asig, int Usuario_Cliente, int Estado_Ticket, int Presupuesto,
+            string Detalles, int TicketID, int pid1, int pid2, int pid3, int pid4, int pid5, int pid6, int pid7, int pid8) 
+        {
+            modelillo.RegistrarProductoTicket(pid1, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid2, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid3, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid4, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid5, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid6, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid7, TicketID, 1);
+            modelillo.RegistrarProductoTicket(pid8, TicketID, 1);
+            modelillo.ActualizarTicket(Usuario_Empleado_Asig, Usuario_Cliente, Estado_Ticket, DateTime.Today, Presupuesto, Detalles, TicketID);
+            return View();
+        }
+
+        [VerificarLogin]
+        [HttpGet]
+        public ActionResult logoutJS()
+        {
+            Session.Abandon();
+            //return RedirectToAction("IngresoUsuarios", "Usuario");
+            return View();
+        }
     }
 }
