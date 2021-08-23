@@ -16,7 +16,7 @@
                             <div class="col-md-12">
                                 <div class="single-input">
                                     <label for="presupuesto">Presupuesto</label>
-                                    @Html.TextBoxFor(Model => Model.Presupuesto, new { @class = "login-form", placeholder = "Presupuesto" })
+                                    @Html.TextBoxFor(Model => Model.Presupuesto, new { @class = "login-form", placeholder = "Presupuesto", required = "" })
                                     <i class="lni lni-coin"></i>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                                 <div class="single-input">
                                     <label for="detalles">Detalles</label>
                                     <!--<textarea name="detalles" id="detalles" class="form-input" placeholder="Descripción del productos" rows="6"></textarea>-->
-                                    @Html.TextBoxFor(Model => Model.Detalles, new { @class = "login-form", placeholder = "Detalles" })
+                                    @Html.TextBoxFor(Model => Model.Detalles, new { @class = "login-form", placeholder = "Detalles", required = "" })
                                     <i class="lni lni-comments-alt"></i>
                                 </div>
                             </div>

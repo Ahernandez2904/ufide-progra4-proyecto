@@ -121,7 +121,7 @@ namespace Proyecto.Controllers
                 }
                 else
                 {
-                    return View();
+                    return Content("<script language='javascript' type='text/javascript'>alert('Usuario no encontrado');</script>");
                 }
             }
         }
@@ -173,8 +173,9 @@ namespace Proyecto.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorVista = "Verifique sus credenciales";
+                    ViewBag.FirstNameError = "Contraseña o Usuario incorrecto";
                     return View();
+                   
                 }
             }
         }
@@ -187,7 +188,7 @@ namespace Proyecto.Controllers
                 usuari.Nombre = modelo.Nombre;
                 usuari.Apellido1 = modelo.Apellido1;
                 usuari.Apellido2 = modelo.Apellido2;
-                usuari.PermisosID = 2;
+                usuari.PermisosID = 1;
                 usuari.Activos = true;
                 usuari.Password = modelo.Password;
                 usuari.Email = modelo.Email;
