@@ -67,5 +67,17 @@ namespace Proyecto.Controllers
             //return RedirectToAction("IngresoUsuarios", "Usuario");
             return View();
         }
+
+        [VerificarLogin]
+        [HttpGet]
+        public ActionResult TiqueteProducto()
+        {
+            //var s = this.Session["Datos"] as Usuarios;
+            dynamic mymodel = new ExpandoObject();
+            mymodel.cp = modelillo.ConsultarProductos();
+            mymodel.ccp = modelillo.ConsultarCategoriaProducto();
+            mymodel.cpt = modelillo.ConsultarProductoTicket2();
+            return View(mymodel);
+        }
     }
 }

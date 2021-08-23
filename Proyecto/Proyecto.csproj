@@ -230,6 +230,10 @@
     <Content Include="FuncionesJS\UsuarioJS.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\about-1.jpg" />
+    <Content Include="images\about-2.jpg" />
+    <Content Include="images\about-3.jpg" />
+    <Content Include="images\about-img-1.jpg" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\crazytech\logo-completo.png" />
     <Content Include="images\crazytech\logo-texto.png" />
@@ -354,6 +358,7 @@
     <Content Include="Views\Usuario\RegistroUsuarios.cshtml" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Productos\EliminarProductoPartial.cshtml" />
+    <Content Include="Views\Tiquetes\TiqueteProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
